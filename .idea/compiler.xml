@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="Kyosk_Interview.app" target="11" />
+      <module name="Kyosk_Interview.data.cache" target="11" />
+      <module name="Kyosk_Interview.data.network" target="11" />
+      <module name="Kyosk_Interview.data.repository" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
