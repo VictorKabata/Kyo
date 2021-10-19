@@ -11,7 +11,7 @@ data class PopularMovieDto(
     val fullTitle: String?,
 
     @SerializedName("id")
-    val id: String?,
+    val id: String,
 
     @SerializedName("imDbRating")
     val imDbRating: String?,

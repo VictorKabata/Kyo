@@ -17,7 +17,7 @@ data class InTheatersMovieDto(
     val genres: String?,
 
     @SerializedName("id")
-    val id: String?,
+    val id: String,
 
     @SerializedName("imDbRating")
     val imDbRating: String?,

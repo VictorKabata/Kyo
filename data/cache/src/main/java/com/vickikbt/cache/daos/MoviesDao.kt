@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vickikbt.cache.models.*
+import com.vickikbt.cache.models.InTheatersMovieEntity
+import com.vickikbt.cache.models.PopularMovieEntity
+import com.vickikbt.cache.models.Top250MovieEntity
 
 @Dao
 interface MoviesDao {
@@ -26,5 +28,14 @@ interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveTop250Movies(top250MoviesEntities: List<Top250MovieEntity>)
+
+    @Query("SELECT COUNT(*) FROM In_Theaters_Movies_Table")
+    suspend fun isInTheaterMoviesCacheAvailable(): Int
+
+    @Query("SELECT COUNT(*) FROM Popular_Movies_Table")
+    suspend fun isPopularMoviesCacheAvailable(): Int
+
+    @Query("SELECT COUNT(*) FROM Top_250_Movies_Table")
+    suspend fun isTop250MoviesCacheAvailable(): Int
 
 }

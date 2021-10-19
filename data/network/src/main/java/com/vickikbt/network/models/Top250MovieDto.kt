@@ -11,7 +11,7 @@ data class Top250MovieDto(
     val fullTitle: String?,
 
     @SerializedName("id")
-    val id: String?,
+    val id: String,
 
     @SerializedName("imDbRating")
     val imDbRating: String?,

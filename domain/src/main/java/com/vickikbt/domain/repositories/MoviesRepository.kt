@@ -2,7 +2,7 @@ package com.vickikbt.domain.repositories
 
 import com.vickikbt.domain.models.*
 
-interface MovieRepository {
+interface MoviesRepository {
 
     suspend fun fetchInTheatersMovies(): InTheatersResponse
 
@@ -10,10 +10,10 @@ interface MovieRepository {
 
     suspend fun fetchTop250Movies(): Top250MoviesResponse
 
-    suspend fun saveInTheatersMovies(inTheaterMovies: List<InTheatersMovie>)
+    //suspend fun saveInTheatersMovies(inTheaterMovies: List<InTheatersMovie>)
 
-    suspend fun savePopularMovies(popularMovies: List<PopularMovie>)
+    //suspend fun savePopularMovies(popularMovies: List<PopularMovie>)
 
-    suspend fun saveTop250Movies(top250Movies: List<Top250Movie>)
+    //suspend fun saveTop250Movies(top250Movies: List<Top250Movie>)
 
 }
