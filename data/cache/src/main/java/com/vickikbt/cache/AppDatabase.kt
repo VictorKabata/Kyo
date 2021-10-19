@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.vickikbt.cache.converters.InTheatersMoviesConverter
 import com.vickikbt.cache.converters.PopularMoviesConverter
+import com.vickikbt.cache.converters.Top250MoviesConverter
 import com.vickikbt.cache.daos.MoviesDao
 import com.vickikbt.cache.models.InTheatersMovieEntity
 import com.vickikbt.cache.models.PopularMovieEntity
@@ -17,7 +18,7 @@ import com.vickikbt.cache.models.Top250MovieEntity
 @TypeConverters(
     InTheatersMoviesConverter::class,
     PopularMoviesConverter::class,
-    Top250MovieEntity::class
+    Top250MoviesConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
 
