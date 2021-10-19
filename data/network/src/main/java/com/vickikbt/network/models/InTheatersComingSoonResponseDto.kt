@@ -3,10 +3,10 @@ package com.vickikbt.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class InTheatersResponseDto(
+data class InTheatersComingSoonResponseDto(
     @SerializedName("errorMessage")
     val errorMessage: String?,
 
     @SerializedName("items")
-    val inTheatersMovies: List<InTheatersMovieDto>?
+    val inTheatersComingSoonMovies: List<InTheatersComingSoonMovieDto>?
 )

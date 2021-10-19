@@ -3,7 +3,7 @@ package com.vickikbt.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Top250MovieDto(
+data class PopularMovieShowDto(
     @SerializedName("crew")
     val crew: String?,
 
@@ -24,6 +24,9 @@ data class Top250MovieDto(
 
     @SerializedName("rank")
     val rank: String?,
+
+    @SerializedName("rankUpDown")
+    val rankUpDown: String?,
 
     @SerializedName("title")
     val title: String?,

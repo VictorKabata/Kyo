@@ -4,30 +4,30 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vickikbt.cache.models.InTheatersMovieEntity
-import com.vickikbt.cache.models.PopularMovieEntity
-import com.vickikbt.cache.models.Top250MovieEntity
+import com.vickikbt.cache.models.InTheatersComingSoonEntity
+import com.vickikbt.cache.models.PopularMovieShowEntity
+import com.vickikbt.cache.models.Top250MovieShowEntity
 
 @Dao
 interface MoviesDao {
 
     @Query("SELECT * FROM In_Theaters_Movies_Table")
-    suspend fun getInTheatersMovies(): List<InTheatersMovieEntity>
+    suspend fun getInTheatersMovies(): List<InTheatersComingSoonEntity>
 
     @Query("SELECT * FROM Popular_Movies_Table")
-    suspend fun getPopularMovies(): List<PopularMovieEntity>
+    suspend fun getPopularMovies(): List<PopularMovieShowEntity>
 
     @Query("SELECT * FROM Top_250_Movies_Table")
-    suspend fun getTop250Movies(): List<Top250MovieEntity>
+    suspend fun getTop250Movies(): List<Top250MovieShowEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveInTheatersMovies(inTheatersEntities: List<InTheatersMovieEntity>)
+    suspend fun saveInTheatersMovies(inTheatersEntities: List<InTheatersComingSoonEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun savePopularMovies(popularMoviesEntities: List<PopularMovieEntity>)
+    suspend fun savePopularMovies(popularMoviesEntities: List<PopularMovieShowEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveTop250Movies(top250MoviesEntities: List<Top250MovieEntity>)
+    suspend fun saveTop250Movies(top250MoviesEntities: List<Top250MovieShowEntity>)
 
     @Query("SELECT COUNT(*) FROM In_Theaters_Movies_Table")
     suspend fun isInTheaterMoviesCacheAvailable(): Int

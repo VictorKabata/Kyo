@@ -1,11 +1,15 @@
-package com.vickikbt.domain.models
+package com.vickikbt.cache.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class PopularMovie(
+@Entity(tableName = "Popular_Movies_Table")
+data class PopularMovieShowEntity(
     val crew: String?,
 
     val fullTitle: String?,
 
+    @PrimaryKey(autoGenerate = false)
     val id: String,
 
     val imDbRating: String?,

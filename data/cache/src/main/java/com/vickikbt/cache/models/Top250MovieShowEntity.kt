@@ -3,8 +3,8 @@ package com.vickikbt.cache.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Popular_Movies_Table")
-data class PopularMovieEntity(
+@Entity(tableName = "Top_250_Movies_Table")
+data class Top250MovieShowEntity(
     val crew: String?,
 
     val fullTitle: String?,
@@ -19,8 +19,6 @@ data class PopularMovieEntity(
     val image: String?,
 
     val rank: String?,
-
-    val rankUpDown: String?,
 
     val title: String?,
 

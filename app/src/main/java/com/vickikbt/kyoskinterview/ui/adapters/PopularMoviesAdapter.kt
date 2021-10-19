@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.vickikbt.domain.models.PopularMovie
+import com.vickikbt.domain.models.PopularMovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemRvMovieBinding
 
-class PopularMoviesAdapter constructor(private val popularMovies: List<PopularMovie>) :
+class PopularMoviesAdapter constructor(private val popularMovies: List<PopularMovieShow>) :
     RecyclerView.Adapter<PopularMoviesAdapter.PopularMovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMovieViewHolder {
@@ -31,7 +31,7 @@ class PopularMoviesAdapter constructor(private val popularMovies: List<PopularMo
     inner class PopularMovieViewHolder(private val binding: ItemRvMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(context: Context, popularMovie: PopularMovie) {
+        fun bind(context: Context, popularMovie: PopularMovieShow) {
             Glide.with(context)
                 .load(popularMovie.image)
                 .transition(DrawableTransitionOptions.withCrossFade(500))

@@ -7,12 +7,12 @@ import com.vickikbt.cache.converters.InTheatersMoviesConverter
 import com.vickikbt.cache.converters.PopularMoviesConverter
 import com.vickikbt.cache.converters.Top250MoviesConverter
 import com.vickikbt.cache.daos.MoviesDao
-import com.vickikbt.cache.models.InTheatersMovieEntity
-import com.vickikbt.cache.models.PopularMovieEntity
-import com.vickikbt.cache.models.Top250MovieEntity
+import com.vickikbt.cache.models.InTheatersComingSoonEntity
+import com.vickikbt.cache.models.PopularMovieShowEntity
+import com.vickikbt.cache.models.Top250MovieShowEntity
 
 @Database(
-    entities = [InTheatersMovieEntity::class, PopularMovieEntity::class, Top250MovieEntity::class],
+    entities = [InTheatersComingSoonEntity::class, PopularMovieShowEntity::class, Top250MovieShowEntity::class],
     version = 1
 )
 @TypeConverters(

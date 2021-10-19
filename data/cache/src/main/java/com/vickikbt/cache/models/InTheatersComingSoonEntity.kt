@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "In_Theaters_Movies_Table")
-data class InTheatersMovieEntity(
+data class InTheatersComingSoonEntity(
     val contentRating: String?,
 
     val directors: String?,

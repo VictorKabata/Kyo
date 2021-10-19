@@ -3,9 +3,9 @@ package com.vickikbt.kyoskinterview.ui.fragments.movies
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vickikbt.domain.models.InTheatersMovie
-import com.vickikbt.domain.models.PopularMovie
-import com.vickikbt.domain.models.Top250Movie
+import com.vickikbt.domain.models.InTheatersComingSoonMovie
+import com.vickikbt.domain.models.PopularMovieShow
+import com.vickikbt.domain.models.Top250MovieShow
 import com.vickikbt.domain.usecases.GetInTheaterMoviesUseCase
 import com.vickikbt.domain.usecases.GetPopularMoviesUseCase
 import com.vickikbt.domain.usecases.GetTop250MoviesUseCase
@@ -18,13 +18,13 @@ class MoviesViewModel constructor(
     private val getTop250MoviesUseCase: GetTop250MoviesUseCase
 ) : ViewModel() {
 
-    private val _inTheatersMovies = MutableLiveData<List<InTheatersMovie>>()
+    private val _inTheatersMovies = MutableLiveData<List<InTheatersComingSoonMovie>>()
     val inTheatersMovies get() = _inTheatersMovies
 
-    private val _popularMovies = MutableLiveData<List<PopularMovie>>()
+    private val _popularMovies = MutableLiveData<List<PopularMovieShow>>()
     val popularMovies get() = _popularMovies
 
-    private val _top250Movies = MutableLiveData<List<Top250Movie>>()
+    private val _top250Movies = MutableLiveData<List<Top250MovieShow>>()
     val top250Movies get() = _top250Movies
 
     init {

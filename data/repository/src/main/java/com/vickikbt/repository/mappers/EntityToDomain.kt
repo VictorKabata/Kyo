@@ -1,16 +1,16 @@
 package com.vickikbt.repository.mappers
 
-import com.vickikbt.cache.models.InTheatersMovieEntity
-import com.vickikbt.cache.models.InTheatersResponseEntity
-import com.vickikbt.cache.models.PopularMovieEntity
-import com.vickikbt.cache.models.Top250MovieEntity
-import com.vickikbt.domain.models.InTheatersMovie
-import com.vickikbt.domain.models.InTheatersResponse
-import com.vickikbt.domain.models.PopularMovie
-import com.vickikbt.domain.models.Top250Movie
+import com.vickikbt.cache.models.InTheatersComingSoonEntity
+import com.vickikbt.cache.models.InTheatersComingSoonResponseEntity
+import com.vickikbt.cache.models.PopularMovieShowEntity
+import com.vickikbt.cache.models.Top250MovieShowEntity
+import com.vickikbt.domain.models.InTheatersComingSoonMovie
+import com.vickikbt.domain.models.InTheatersComingSoonResponse
+import com.vickikbt.domain.models.PopularMovieShow
+import com.vickikbt.domain.models.Top250MovieShow
 
-internal fun InTheatersMovieEntity.toDomain(): InTheatersMovie {
-    return InTheatersMovie(
+internal fun InTheatersComingSoonEntity.toDomain(): InTheatersComingSoonMovie {
+    return InTheatersComingSoonMovie(
         contentRating = this.contentRating,
         directors = this.directors,
         fullTitle = this.fullTitle,
@@ -30,14 +30,14 @@ internal fun InTheatersMovieEntity.toDomain(): InTheatersMovie {
     )
 }
 
-internal fun InTheatersResponseEntity.toDomain(): InTheatersResponse {
-    return InTheatersResponse(
+internal fun InTheatersComingSoonResponseEntity.toDomain(): InTheatersComingSoonResponse {
+    return InTheatersComingSoonResponse(
         errorMessage = this.errorMessage,
         inTheatersMovies = this.inTheatersMovies?.map { it.toDomain() })
 }
 
-internal fun PopularMovieEntity.toDomain(): PopularMovie {
-    return PopularMovie(
+internal fun PopularMovieShowEntity.toDomain(): PopularMovieShow {
+    return PopularMovieShow(
         crew = this.crew,
         fullTitle = this.fullTitle,
         id = this.id,
@@ -51,8 +51,8 @@ internal fun PopularMovieEntity.toDomain(): PopularMovie {
     )
 }
 
-internal fun Top250MovieEntity.toDomain(): Top250Movie {
-    return Top250Movie(
+internal fun Top250MovieShowEntity.toDomain(): Top250MovieShow {
+    return Top250MovieShow(
         crew = this.crew,
         fullTitle = this.fullTitle,
         id = this.id,

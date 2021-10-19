@@ -1,16 +1,16 @@
 package com.vickikbt.repository.mappers
 
-import com.vickikbt.cache.models.InTheatersMovieEntity
-import com.vickikbt.cache.models.InTheatersResponseEntity
-import com.vickikbt.cache.models.PopularMovieEntity
-import com.vickikbt.cache.models.Top250MovieEntity
-import com.vickikbt.network.models.InTheatersMovieDto
-import com.vickikbt.network.models.InTheatersResponseDto
-import com.vickikbt.network.models.PopularMovieDto
-import com.vickikbt.network.models.Top250MovieDto
+import com.vickikbt.cache.models.InTheatersComingSoonEntity
+import com.vickikbt.cache.models.InTheatersComingSoonResponseEntity
+import com.vickikbt.cache.models.PopularMovieShowEntity
+import com.vickikbt.cache.models.Top250MovieShowEntity
+import com.vickikbt.network.models.InTheatersComingSoonMovieDto
+import com.vickikbt.network.models.InTheatersComingSoonResponseDto
+import com.vickikbt.network.models.PopularMovieShowDto
+import com.vickikbt.network.models.Top250MovieShowDto
 
-internal fun InTheatersMovieDto.toEntity(): InTheatersMovieEntity {
-    return InTheatersMovieEntity(
+internal fun InTheatersComingSoonMovieDto.toEntity(): InTheatersComingSoonEntity {
+    return InTheatersComingSoonEntity(
         contentRating = this.contentRating,
         directors = this.directors,
         fullTitle = this.fullTitle,
@@ -30,14 +30,14 @@ internal fun InTheatersMovieDto.toEntity(): InTheatersMovieEntity {
     )
 }
 
-internal fun InTheatersResponseDto.toEntity(): InTheatersResponseEntity {
-    return InTheatersResponseEntity(
+internal fun InTheatersComingSoonResponseDto.toEntity(): InTheatersComingSoonResponseEntity {
+    return InTheatersComingSoonResponseEntity(
         errorMessage = this.errorMessage,
-        inTheatersMovies = this.inTheatersMovies?.map { it.toEntity() })
+        inTheatersMovies = this.inTheatersComingSoonMovies?.map { it.toEntity() })
 }
 
-internal fun PopularMovieDto.toEntity(): PopularMovieEntity {
-    return PopularMovieEntity(
+internal fun PopularMovieShowDto.toEntity(): PopularMovieShowEntity {
+    return PopularMovieShowEntity(
         crew = this.crew,
         fullTitle = this.fullTitle,
         id = this.id,
@@ -51,8 +51,8 @@ internal fun PopularMovieDto.toEntity(): PopularMovieEntity {
     )
 }
 
-internal fun Top250MovieDto.toEntity(): Top250MovieEntity {
-    return Top250MovieEntity(
+internal fun Top250MovieShowDto.toEntity(): Top250MovieShowEntity {
+    return Top250MovieShowEntity(
         crew = this.crew,
         fullTitle = this.fullTitle,
         id = this.id,

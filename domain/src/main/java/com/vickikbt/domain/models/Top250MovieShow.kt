@@ -1,7 +1,7 @@
 package com.vickikbt.domain.models
 
 
-data class Top250Movie(
+data class Top250MovieShow(
     val crew: String?,
 
     val fullTitle: String?,

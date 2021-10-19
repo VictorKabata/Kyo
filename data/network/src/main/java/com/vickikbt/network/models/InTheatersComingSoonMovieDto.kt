@@ -3,7 +3,7 @@ package com.vickikbt.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class InTheatersMovieDto(
+data class InTheatersComingSoonMovieDto(
     @SerializedName("contentRating")
     val contentRating: String?,
 

@@ -1,15 +1,11 @@
-package com.vickikbt.cache.models
+package com.vickikbt.domain.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "Top_250_Movies_Table")
-data class Top250MovieEntity(
+data class PopularMovieShow(
     val crew: String?,
 
     val fullTitle: String?,
 
-    @PrimaryKey(autoGenerate = false)
     val id: String,
 
     val imDbRating: String?,
@@ -19,6 +15,8 @@ data class Top250MovieEntity(
     val image: String?,
 
     val rank: String?,
+
+    val rankUpDown: String?,
 
     val title: String?,
 
