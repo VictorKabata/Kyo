@@ -22,13 +22,13 @@ interface ApiService {
     //endregion
 
     //region TV Shows Endpoints
-    @GET("InTheaters/{apiKey}")
+    @GET("ComingSoon/{apiKey}")
     suspend fun fetchComingSoon(@Path("apiKey") apiKey: String = Constants.API_KEY): Response<InTheatersComingSoonResponseDto>
 
-    @GET("MostPopularMovies/{apiKey}")
+    @GET("MostPopularTVs/{apiKey}")
     suspend fun fetchPopularTvShows(@Path("apiKey") apiKey: String = Constants.API_KEY): Response<PopularMoviesShowsResponseDto>
 
-    @GET("Top250Movies/{apiKey}")
+    @GET("Top250TVs/{apiKey}")
     suspend fun fetchTop250TvShows(@Path("apiKey") apiKey: String = Constants.API_KEY): Response<Top250MoviesShowsResponseDto>
     //endregion
 

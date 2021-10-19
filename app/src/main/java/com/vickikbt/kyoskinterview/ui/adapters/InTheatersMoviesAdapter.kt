@@ -34,7 +34,7 @@ class InTheatersMoviesAdapter constructor(
         holder.bind(context, inTheatersMovie)
     }
 
-    override fun getItemCount() = 5
+    override fun getItemCount() = inTheaterMovies.size
 
     inner class ViewHolder(private val binding: ItemHeaderViewpagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
