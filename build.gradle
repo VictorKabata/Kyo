@@ -1,0 +1,31 @@
+buildscript {
+
+    ext {
+        kotlin_version = "1.5.30"
+        koin_version = "3.1.2"
+        coroutines_version = "1.5.2"
+        androidCore_version = '1.6.0'
+        navigation_version = "2.4.0-alpha02"
+        glide_version = "4.12.0"
+        timber_version = "5.0.1"
+        palette_version = "28.0.0"
+
+        //Data layer
+        retrofit_version = '2.9.0'
+        okhttp_vesion = '5.0.0-alpha.2'
+        loggingIntercepter_version = '5.0.0-alpha.2'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
