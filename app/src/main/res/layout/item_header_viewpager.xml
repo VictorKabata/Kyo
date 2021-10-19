@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="8dp">
+
+    <com.bosphere.fadingedgelayout.FadingEdgeLayout
+        android:id="@+id/fel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fel_edge="bottom"
+        app:fel_size_bottom="90dp">
+
+        <ImageView
+            android:id="@+id/imageView_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/cd_movie_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_launcher_background" />
+    </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+    <TextView
+        android:id="@+id/textView_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="6dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:maxLines="1"
+        android:textColor="@color/textPrimary"
+        android:textSize="24sp"
+        tools:text="Star Wars: The Last Jedi" />
+
+</com.google.android.material.card.MaterialCardView>

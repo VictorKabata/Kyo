@@ -62,4 +62,10 @@ dependencies {
     //Timber-Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //Palette- Generates dominant colors from image
+    implementation "com.android.support:palette-v7:$palette_version"
+
+    //Fading Edge- Create a UI view with a smooth fading edge
+    implementation "com.github.bosphere.android-fadingedgelayout:fadingedgelayout:$fadingEdge_version"
 }

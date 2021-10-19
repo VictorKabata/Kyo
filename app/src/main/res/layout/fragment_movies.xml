@@ -52,11 +52,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager_in_theaters"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="8dp"
                 android:alpha="1"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
                 app:layout_constraintTop_toBottomOf="@id/textView_popular_title" />
             <!--endregion-->
 
@@ -65,9 +68,11 @@
                 android:id="@+id/linearLayout_popular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
                 app:layout_constraintTop_toBottomOf="@id/viewPager_in_theaters">
 
                 <TextView
@@ -112,9 +117,11 @@
                 android:id="@+id/linearLayout_top_250"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
                 app:layout_constraintTop_toBottomOf="@id/recyclerview_popular">
 
                 <TextView
