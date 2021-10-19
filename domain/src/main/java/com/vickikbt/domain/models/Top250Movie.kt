@@ -6,7 +6,7 @@ data class Top250Movie(
 
     val fullTitle: String?,
 
-    val id: String?,
+    val id: String,
 
     val imDbRating: String?,
 

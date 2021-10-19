@@ -10,7 +10,7 @@ data class InTheatersMovie(
 
     val genres: String?,
 
-    val id: String?,
+    val id: String,
 
     val imDbRating: String?,
 
@@ -27,8 +27,6 @@ data class InTheatersMovie(
     val runtimeMins: String?,
 
     val runtimeStr: String?,
-
-    val starList: List<Star>?,
 
     val stars: String?,
 

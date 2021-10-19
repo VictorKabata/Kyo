@@ -10,7 +10,7 @@ data class Top250MovieEntity(
     val fullTitle: String?,
 
     @PrimaryKey(autoGenerate = false)
-    val id: String?,
+    val id: String,
 
     val imDbRating: String?,
 

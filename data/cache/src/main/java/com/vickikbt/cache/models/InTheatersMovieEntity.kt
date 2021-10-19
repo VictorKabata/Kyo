@@ -14,7 +14,7 @@ data class InTheatersMovieEntity(
     val genres: String?,
 
     @PrimaryKey(autoGenerate = false)
-    val id: String?,
+    val id: String,
 
     val imDbRating: String?,
 
@@ -31,8 +31,6 @@ data class InTheatersMovieEntity(
     val runtimeMins: String?,
 
     val runtimeStr: String?,
-
-    val starList: List<StarEntity>?,
 
     val stars: String?,
 

@@ -36,12 +36,12 @@ dependencies {
     implementation project(":commons")
 
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     //Koin Android-Dependency injection in android module
     implementation "io.insert-koin:koin-android:$koin_version"
 
     //GSON
-    //implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.google.code.gson:gson:$gson_version"
 }

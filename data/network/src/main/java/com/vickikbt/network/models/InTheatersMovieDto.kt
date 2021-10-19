@@ -43,9 +43,6 @@ data class InTheatersMovieDto(
     @SerializedName("runtimeStr")
     val runtimeStr: String?,
 
-    @SerializedName("starList")
-    val starList: List<StarDto>?,
-
     @SerializedName("stars")
     val stars: String?,
 
