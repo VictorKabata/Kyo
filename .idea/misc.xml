@@ -7,11 +7,12 @@
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_movies.xml" value="0.22" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_profile.xml" value="0.3109375" />
-        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_tv_shows.xml" value="0.325" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_tv_shows.xml" value="0.1" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_header_viewpager.xml" value="0.30925925925925923" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_rv_movie.xml" value="0.30925925925925923" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13703703703703704" />
         <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/menu/search_menu.xml" value="0.30925925925925923" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/xml/movies_fragment_scene.xml" value="0.30925925925925923" />
       </map>
     </option>
   </component>
