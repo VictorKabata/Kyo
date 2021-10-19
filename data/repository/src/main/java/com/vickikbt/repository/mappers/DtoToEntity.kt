@@ -4,12 +4,12 @@ import com.vickikbt.cache.models.InTheatersComingSoonEntity
 import com.vickikbt.cache.models.InTheatersComingSoonResponseEntity
 import com.vickikbt.cache.models.PopularMovieShowEntity
 import com.vickikbt.cache.models.Top250MovieShowEntity
-import com.vickikbt.network.models.InTheatersComingSoonMovieDto
+import com.vickikbt.network.models.InTheatersComingSoonDto
 import com.vickikbt.network.models.InTheatersComingSoonResponseDto
 import com.vickikbt.network.models.PopularMovieShowDto
 import com.vickikbt.network.models.Top250MovieShowDto
 
-internal fun InTheatersComingSoonMovieDto.toEntity(): InTheatersComingSoonEntity {
+internal fun InTheatersComingSoonDto.toEntity(): InTheatersComingSoonEntity {
     return InTheatersComingSoonEntity(
         contentRating = this.contentRating,
         directors = this.directors,

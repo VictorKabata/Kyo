@@ -4,13 +4,13 @@ import com.vickikbt.cache.models.InTheatersComingSoonEntity
 import com.vickikbt.cache.models.InTheatersComingSoonResponseEntity
 import com.vickikbt.cache.models.PopularMovieShowEntity
 import com.vickikbt.cache.models.Top250MovieShowEntity
-import com.vickikbt.domain.models.InTheatersComingSoonMovie
+import com.vickikbt.domain.models.InTheatersComingSoon
 import com.vickikbt.domain.models.InTheatersComingSoonResponse
 import com.vickikbt.domain.models.PopularMovieShow
 import com.vickikbt.domain.models.Top250MovieShow
 
-internal fun InTheatersComingSoonEntity.toDomain(): InTheatersComingSoonMovie {
-    return InTheatersComingSoonMovie(
+internal fun InTheatersComingSoonEntity.toDomain(): InTheatersComingSoon {
+    return InTheatersComingSoon(
         contentRating = this.contentRating,
         directors = this.directors,
         fullTitle = this.fullTitle,

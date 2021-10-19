@@ -1,7 +1,7 @@
 package com.vickikbt.domain.models
 
 
-data class InTheatersComingSoonMovie(
+data class InTheatersComingSoon(
     val contentRating: String?,
 
     val directors: String?,

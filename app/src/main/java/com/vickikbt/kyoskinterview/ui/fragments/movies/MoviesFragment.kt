@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
-import com.vickikbt.domain.models.InTheatersComingSoonMovie
+import com.vickikbt.domain.models.InTheatersComingSoon
 import com.vickikbt.domain.models.PopularMovieShow
 import com.vickikbt.domain.models.Top250MovieShow
 import com.vickikbt.kyoskinterview.R
@@ -46,7 +46,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun initInTheatersMovies(inTheatersMovies: List<InTheatersComingSoonMovie>) {
+    private fun initInTheatersMovies(inTheatersMovies: List<InTheatersComingSoon>) {
         val viewPagerAdapter = InTheatersMoviesAdapter(inTheatersMovies)
 
         val compositePageTransformer = CompositePageTransformer()
