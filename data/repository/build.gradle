@@ -32,9 +32,9 @@ android {
 }
 
 dependencies {
-    implementation project(":domain")
-    implementation project(":data:network")
-    implementation project(":data:cache")
+    api project(":domain")
+    api project(":data:network")
+    api project(":data:cache")
 
     //Koin Android-Dependency injection in android module
     implementation "io.insert-koin:koin-android:$koin_version"
