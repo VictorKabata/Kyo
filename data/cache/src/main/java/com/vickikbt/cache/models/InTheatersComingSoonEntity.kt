@@ -36,5 +36,7 @@ data class InTheatersComingSoonEntity(
 
     val title: String?,
 
-    val year: String?
+    val year: String?,
+
+    val category: String?
 )

@@ -5,6 +5,7 @@ import com.vickikbt.cache.AppDatabase
 import com.vickikbt.cache.models.InTheatersComingSoonEntity
 import com.vickikbt.cache.models.PopularMovieShowEntity
 import com.vickikbt.cache.models.Top250MovieShowEntity
+import com.vickikbt.commons.Constants
 import com.vickikbt.domain.models.InTheatersComingSoon
 import com.vickikbt.domain.models.PopularMovieShow
 import com.vickikbt.domain.models.Top250MovieShow
@@ -46,7 +47,8 @@ class MoviesRepositoryImpl constructor(
             cacheResponse.map { it.toDomain() }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchInTheaterMovies() }
-            _inTheatersMoviesEntity.value = networkResponse.inTheatersComingSoonMovies?.map { it.toEntity() }
+            _inTheatersMoviesEntity.value =
+                networkResponse.inTheatersComingSoonMovies?.map { it.toEntity(category = Constants.IN_THEATERS) }
 
             appDatabase.moviesDao().getInTheatersMovies().map { it.toDomain() }
         }
@@ -60,7 +62,8 @@ class MoviesRepositoryImpl constructor(
             cacheResponse.map { it.toDomain() }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchPopularMovies() }
-            _popularMoviesEntity.value = networkResponse.popularMovieShow?.map { it.toEntity() }
+            _popularMoviesEntity.value =
+                networkResponse.popularMovieShow?.map { it.toEntity(category = Constants.POPULAR_MOVIE) }
 
             appDatabase.moviesDao().getPopularMovies().map { it.toDomain() }
         }
@@ -74,7 +77,8 @@ class MoviesRepositoryImpl constructor(
             cacheResponse.map { it.toDomain() }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchTop250Movies() }
-            _top250MoviesEntity.value = networkResponse.top250MovieShows?.map { it.toEntity() }
+            _top250MoviesEntity.value =
+                networkResponse.top250MovieShows?.map { it.toEntity(category = Constants.TOP_250_MOVIE) }
 
             appDatabase.moviesDao().getTop250Movies().map { it.toDomain() }
         }

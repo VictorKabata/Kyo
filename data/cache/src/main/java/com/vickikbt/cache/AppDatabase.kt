@@ -7,6 +7,7 @@ import com.vickikbt.cache.converters.InTheatersMoviesConverter
 import com.vickikbt.cache.converters.PopularMoviesConverter
 import com.vickikbt.cache.converters.Top250MoviesConverter
 import com.vickikbt.cache.daos.MoviesDao
+import com.vickikbt.cache.daos.TvShowsDao
 import com.vickikbt.cache.models.InTheatersComingSoonEntity
 import com.vickikbt.cache.models.PopularMovieShowEntity
 import com.vickikbt.cache.models.Top250MovieShowEntity
@@ -23,5 +24,6 @@ import com.vickikbt.cache.models.Top250MovieShowEntity
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun moviesDao(): MoviesDao
+    abstract fun tvShowsDao(): TvShowsDao
 
 }

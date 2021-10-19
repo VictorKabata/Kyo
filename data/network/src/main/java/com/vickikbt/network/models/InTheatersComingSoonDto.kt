@@ -50,5 +50,7 @@ data class InTheatersComingSoonDto(
     val title: String?,
 
     @SerializedName("year")
-    val year: String?
+    val year: String?,
+
+    val category: String?
 )

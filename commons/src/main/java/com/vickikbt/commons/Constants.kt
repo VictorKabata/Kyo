@@ -2,9 +2,18 @@ package com.vickikbt.commons
 
 object Constants {
 
-    const val BASE_URL="https://imdb-api.com/API/"
+    const val BASE_URL = "https://imdb-api.com/API/"
 
     //ToDo: Remove from public accessible files
-    const val API_KEY="k_am3lgy82"
+    const val API_KEY = "k_am3lgy82"
+
+    const val IN_THEATERS = "in_theaters"
+    const val COMING_SOON = "coming_soon"
+
+    const val POPULAR_MOVIE = "popular_movie"
+    const val POPULAR_TV_SHOW = "popular_tv_show"
+
+    const val TOP_250_MOVIE = "top_250_movie"
+    const val TOP_250_TV_SHOW = "top_250_tv_show"
 
 }

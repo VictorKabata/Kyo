@@ -29,5 +29,7 @@ data class Top250MovieShowDto(
     val title: String?,
 
     @SerializedName("year")
-    val year: String?
+    val year: String?,
+
+    val category: String?
 )

@@ -24,5 +24,7 @@ data class PopularMovieShowEntity(
 
     val title: String?,
 
-    val year: String?
+    val year: String?,
+
+    val category: String?
 )
