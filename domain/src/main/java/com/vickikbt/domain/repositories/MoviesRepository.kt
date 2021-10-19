@@ -1,14 +1,16 @@
 package com.vickikbt.domain.repositories
 
-import com.vickikbt.domain.models.*
+import com.vickikbt.domain.models.InTheatersMovie
+import com.vickikbt.domain.models.PopularMovie
+import com.vickikbt.domain.models.Top250Movie
 
 interface MoviesRepository {
 
-    suspend fun fetchInTheatersMovies(): InTheatersResponse
+    suspend fun fetchInTheatersMovies(): List<InTheatersMovie>
 
-    suspend fun fetchPopularMovies(): PopularMoviesResponse
+    suspend fun fetchPopularMovies(): List<PopularMovie>
 
-    suspend fun fetchTop250Movies(): Top250MoviesResponse
+    suspend fun fetchTop250Movies(): List<Top250Movie>
 
     //suspend fun saveInTheatersMovies(inTheaterMovies: List<InTheatersMovie>)
 

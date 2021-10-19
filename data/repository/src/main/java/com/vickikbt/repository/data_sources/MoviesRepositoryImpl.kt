@@ -5,12 +5,14 @@ import com.vickikbt.cache.AppDatabase
 import com.vickikbt.cache.models.InTheatersMovieEntity
 import com.vickikbt.cache.models.PopularMovieEntity
 import com.vickikbt.cache.models.Top250MovieEntity
-import com.vickikbt.domain.models.InTheatersResponse
-import com.vickikbt.domain.models.PopularMoviesResponse
-import com.vickikbt.domain.models.Top250MoviesResponse
+import com.vickikbt.domain.models.InTheatersMovie
+import com.vickikbt.domain.models.PopularMovie
+import com.vickikbt.domain.models.Top250Movie
 import com.vickikbt.domain.repositories.MoviesRepository
 import com.vickikbt.network.ApiService
 import com.vickikbt.network.utils.SafeApiRequest
+import com.vickikbt.repository.mappers.toDomain
+import com.vickikbt.repository.mappers.toEntity
 import com.vickikbt.repository.utils.Coroutines
 
 class MoviesRepositoryImpl constructor(
@@ -36,26 +38,46 @@ class MoviesRepositoryImpl constructor(
         }
     }
 
-    override suspend fun fetchInTheatersMovies(): InTheatersResponse {
-        val isCacheResponseAvailable = appDatabase.moviesDao().isInTheaterMoviesCacheAvailable()>0
+    override suspend fun fetchInTheatersMovies(): List<InTheatersMovie> {
+        val isCacheResponseAvailable = appDatabase.moviesDao().isInTheaterMoviesCacheAvailable() > 0
 
-        return if (isCacheResponseAvailable){
+        return if (isCacheResponseAvailable) {
             val cacheResponse = appDatabase.moviesDao().getInTheatersMovies()
             cacheResponse.map { it.toDomain() }
-        }else{
-            val networkResponse=safeApiRequest { apiService.fetchInTheaterMovies() }
-            _inTheatersMoviesEntity.value=networkResponse.inTheatersMovies.map { it.toEntity() }
-            appDatabase.moviesDao().getInTheatersMovies()
+        } else {
+            val networkResponse = safeApiRequest { apiService.fetchInTheaterMovies() }
+            _inTheatersMoviesEntity.value = networkResponse.inTheatersMovies?.map { it.toEntity() }
+
+            appDatabase.moviesDao().getInTheatersMovies().map { it.toDomain() }
         }
-
     }
 
-    override suspend fun fetchPopularMovies(): PopularMoviesResponse {
-        TODO("Not yet implemented")
+    override suspend fun fetchPopularMovies(): List<PopularMovie> {
+        val isCacheResponseAvailable = appDatabase.moviesDao().isPopularMoviesCacheAvailable() > 0
+
+        return if (isCacheResponseAvailable) {
+            val cacheResponse = appDatabase.moviesDao().getPopularMovies()
+            cacheResponse.map { it.toDomain() }
+        } else {
+            val networkResponse = safeApiRequest { apiService.fetchPopularMovies() }
+            _popularMoviesEntity.value = networkResponse.popularMovie?.map { it.toEntity() }
+
+            appDatabase.moviesDao().getPopularMovies().map { it.toDomain() }
+        }
     }
 
-    override suspend fun fetchTop250Movies(): Top250MoviesResponse {
-        TODO("Not yet implemented")
+    override suspend fun fetchTop250Movies(): List<Top250Movie> {
+        val isCacheResponseAvailable = appDatabase.moviesDao().isTop250MoviesCacheAvailable() > 0
+
+        return if (isCacheResponseAvailable) {
+            val cacheResponse = appDatabase.moviesDao().getTop250Movies()
+            cacheResponse.map { it.toDomain() }
+        } else {
+            val networkResponse = safeApiRequest { apiService.fetchTop250Movies() }
+            _top250MoviesEntity.value = networkResponse.top250Movies?.map { it.toEntity() }
+
+            appDatabase.moviesDao().getTop250Movies().map { it.toDomain() }
+        }
     }
 
     private suspend fun saveInTheatersMovies(inTheaterMovies: List<InTheatersMovieEntity>) =
