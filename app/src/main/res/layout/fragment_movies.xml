@@ -102,6 +102,7 @@
                 android:orientation="horizontal"
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintHeight_min="215dp"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout_popular"
                 tools:listitem="@layout/item_rv_movie" />
             <!--endregion-->
@@ -148,6 +149,7 @@
                 android:orientation="horizontal"
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintHeight_min="215dp"
                 app:layout_constraintTop_toBottomOf="@id/linearLayout_top_250"
                 tools:listitem="@layout/item_rv_movie" />
             <!--endregion-->

@@ -1,0 +1,72 @@
+package com.vickikbt.kyoskinterview.ui.fragments.movies
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.vickikbt.domain.models.InTheatersMovie
+import com.vickikbt.domain.models.PopularMovie
+import com.vickikbt.domain.models.Top250Movie
+import com.vickikbt.domain.usecases.GetInTheaterMoviesUseCase
+import com.vickikbt.domain.usecases.GetPopularMoviesUseCase
+import com.vickikbt.domain.usecases.GetTop250MoviesUseCase
+import kotlinx.coroutines.launch
+import timber.log.Timber
+
+class MoviesViewModel constructor(
+    private val getInTheaterMoviesUseCase: GetInTheaterMoviesUseCase,
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    private val getTop250MoviesUseCase: GetTop250MoviesUseCase
+) : ViewModel() {
+
+    private val _inTheatersMovies = MutableLiveData<List<InTheatersMovie>>()
+    val inTheatersMovies get() = _inTheatersMovies
+
+    private val _popularMovies = MutableLiveData<List<PopularMovie>>()
+    val popularMovies get() = _popularMovies
+
+    private val _top250Movies = MutableLiveData<List<Top250Movie>>()
+    val top250Movies get() = _top250Movies
+
+    init {
+        getInTheaterMovies()
+        getPopularMovies()
+        getTop250Movies()
+    }
+
+    private fun getInTheaterMovies() {
+        try {
+            viewModelScope.launch {
+                val response = getInTheaterMoviesUseCase.invoke()
+                _inTheatersMovies.value = response
+                return@launch
+            }
+        } catch (e: Exception) {
+            Timber.e("Error: ${e.message}")
+        }
+    }
+
+    private fun getPopularMovies() {
+        try {
+            viewModelScope.launch {
+                val response = getPopularMoviesUseCase.invoke()
+                _popularMovies.value = response
+                return@launch
+            }
+        } catch (e: Exception) {
+            Timber.e("Error: ${e.message}")
+        }
+    }
+
+    private fun getTop250Movies() {
+        try {
+            viewModelScope.launch {
+                val response = getTop250MoviesUseCase.invoke()
+                _top250Movies.value = response
+                return@launch
+            }
+        } catch (e: Exception) {
+            Timber.e("Error: ${e.message}")
+        }
+    }
+
+}

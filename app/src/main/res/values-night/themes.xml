@@ -10,7 +10,6 @@
         <item name="colorSurface">@color/surfaceColor</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="ToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

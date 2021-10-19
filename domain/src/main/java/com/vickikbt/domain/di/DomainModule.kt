@@ -1,12 +1,12 @@
 package com.vickikbt.domain.di
 
-import com.vickikbt.domain.usecases.GetInTheaterMovies
-import com.vickikbt.domain.usecases.GetPopularMovies
-import com.vickikbt.domain.usecases.GetTop250Movies
+import com.vickikbt.domain.usecases.GetInTheaterMoviesUseCase
+import com.vickikbt.domain.usecases.GetPopularMoviesUseCase
+import com.vickikbt.domain.usecases.GetTop250MoviesUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
-    single { GetInTheaterMovies(get()) }
-    single { GetPopularMovies(get()) }
-    single { GetTop250Movies(get()) }
+    single { GetInTheaterMoviesUseCase(get()) }
+    single { GetPopularMoviesUseCase(get()) }
+    single { GetTop250MoviesUseCase(get()) }
 }
