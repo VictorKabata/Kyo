@@ -1,11 +1,15 @@
 package com.vickikbt.cache.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "Top_250_Movies_Table")
 data class Top250MovieEntity(
     val crew: String?,
 
     val fullTitle: String?,
 
+    @PrimaryKey(autoGenerate = false)
     val id: String?,
 
     val imDbRating: String?,

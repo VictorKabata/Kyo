@@ -1,6 +1,8 @@
 package com.vickikbt.cache.models
 
+import androidx.room.Entity
 
+@Entity(tableName = "Popular_Movies_Table")
 data class PopularMovieEntity(
     val crew: String?,
 

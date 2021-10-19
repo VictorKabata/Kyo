@@ -1,6 +1,9 @@
 package com.vickikbt.cache.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "In_Theaters_Movies_Table")
 data class InTheatersMovieEntity(
     val contentRating: String?,
 
@@ -10,6 +13,7 @@ data class InTheatersMovieEntity(
 
     val genres: String?,
 
+    @PrimaryKey(autoGenerate = false)
     val id: String?,
 
     val imDbRating: String?,
