@@ -39,7 +39,7 @@
 
             <!--region In Theater-->
             <TextView
-                android:id="@+id/textView_popular_title"
+                android:id="@+id/textView_in_theaters_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -60,7 +60,7 @@
                 android:alpha="1"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="4dp"
-                app:layout_constraintTop_toBottomOf="@id/textView_popular_title" />
+                app:layout_constraintTop_toBottomOf="@id/textView_in_theaters_title" />
             <!--endregion-->
 
             <!--region Popular-->
