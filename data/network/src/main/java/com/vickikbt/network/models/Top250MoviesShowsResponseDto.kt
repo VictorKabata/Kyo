@@ -8,5 +8,5 @@ data class Top250MoviesShowsResponseDto(
     val errorMessage: String?,
 
     @SerializedName("items")
-    val top250MovieShows: List<Top250MovieShowDto>?
+    val movieShows: List<MovieShowDto>?
 )

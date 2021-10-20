@@ -9,18 +9,36 @@
         android:id="@+id/movies_fragment"
         android:name="com.vickikbt.kyoskinterview.ui.fragments.movies.MoviesFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/movies_to_details"
+            app:destination="@id/detail_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/tv_shows_fragment"
         android:name="com.vickikbt.kyoskinterview.ui.fragments.tv_shows.TvShowsFragment"
         android:label="@string/title_tv_shows"
-        tools:layout="@layout/fragment_tv_shows" />
+        tools:layout="@layout/fragment_tv_shows" >
+        <action
+            android:id="@+id/tv_shows_to_details"
+            app:destination="@id/detail_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.vickikbt.kyoskinterview.ui.fragments.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.details.DetailsFragment"
+        android:label="@string/title_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

@@ -1,10 +1,6 @@
 package com.vickikbt.domain.models
 
-
-data class PopularMovieShow(
-    val crew: String?,
-
-    val fullTitle: String?,
+data class MovieShow(
 
     val id: String,
 
@@ -14,11 +10,5 @@ data class PopularMovieShow(
 
     val image: String?,
 
-    val rank: String?,
-
-    val rankUpDown: String?,
-
     val title: String?,
-
-    val year: String?
 )

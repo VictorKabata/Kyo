@@ -3,13 +3,7 @@ package com.vickikbt.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMovieShowDto(
-    @SerializedName("crew")
-    val crew: String?,
-
-    @SerializedName("fullTitle")
-    val fullTitle: String?,
-
+data class MovieShowDto(
     @SerializedName("id")
     val id: String,
 
@@ -22,17 +16,8 @@ data class PopularMovieShowDto(
     @SerializedName("image")
     val image: String?,
 
-    @SerializedName("rank")
-    val rank: String?,
-
-    @SerializedName("rankUpDown")
-    val rankUpDown: String?,
-
     @SerializedName("title")
     val title: String?,
-
-    @SerializedName("year")
-    val year: String?,
 
     val category: String?
 )

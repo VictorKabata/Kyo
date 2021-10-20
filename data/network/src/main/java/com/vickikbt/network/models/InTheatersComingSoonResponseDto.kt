@@ -8,5 +8,5 @@ data class InTheatersComingSoonResponseDto(
     val errorMessage: String?,
 
     @SerializedName("items")
-    val inTheatersComingSoonMovies: List<InTheatersComingSoonDto>?
+    val inTheatersComingSoonMovies: List<MovieShowDto>?
 )

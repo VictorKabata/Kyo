@@ -12,12 +12,12 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
-import com.vickikbt.domain.models.InTheatersComingSoon
+import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemHeaderViewpagerBinding
 import timber.log.Timber
 
 class InTheatersMoviesAdapter constructor(
-    private val inTheaterMovies: List<InTheatersComingSoon>
+    private val inTheaterMovies: List<MovieShow>
 ) : RecyclerView.Adapter<InTheatersMoviesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,7 +39,7 @@ class InTheatersMoviesAdapter constructor(
     inner class ViewHolder(private val binding: ItemHeaderViewpagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(context: Context, inTheatersMovie: InTheatersComingSoon) {
+        fun bind(context: Context, inTheatersMovie: MovieShow) {
             Glide.with(context)
                 .load(inTheatersMovie.image)
                 //.placeholder(R.drawable.image_placeholder)

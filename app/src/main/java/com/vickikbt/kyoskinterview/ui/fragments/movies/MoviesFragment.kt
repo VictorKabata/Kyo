@@ -3,17 +3,15 @@ package com.vickikbt.kyoskinterview.ui.fragments.movies
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
-import com.vickikbt.domain.models.InTheatersComingSoon
-import com.vickikbt.domain.models.PopularMovieShow
-import com.vickikbt.domain.models.Top250MovieShow
+import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentMoviesBinding
 import com.vickikbt.kyoskinterview.ui.adapters.InTheatersMoviesAdapter
-import com.vickikbt.kyoskinterview.ui.adapters.PopularMoviesAdapter
-import com.vickikbt.kyoskinterview.ui.adapters.Top250MoviesAdapter
+import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
@@ -46,7 +44,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun initInTheatersMovies(inTheatersMovies: List<InTheatersComingSoon>) {
+    private fun initInTheatersMovies(inTheatersMovies: List<MovieShow>) {
         val viewPagerAdapter = InTheatersMoviesAdapter(inTheatersMovies)
 
         val compositePageTransformer = CompositePageTransformer()
@@ -66,16 +64,24 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun initPopularMovies(popularMovies: List<PopularMovieShow>) {
-        binding.recyclerviewPopular.apply {
-            adapter = PopularMoviesAdapter(popularMovies)
+    private fun initPopularMovies(popularMovies: List<MovieShow>) {
+        val adapter = MoviesShowsAdapter(popularMovies) {
+            navigateToDetails(it.id)
         }
+
+        binding.recyclerviewPopular.adapter = adapter
     }
 
-    private fun initTop250Movies(top250Movies: List<Top250MovieShow>) {
-        binding.recyclerviewTop250.apply {
-            adapter = Top250MoviesAdapter(top250Movies)
+    private fun initTop250Movies(movies: List<MovieShow>) {
+        val adapter = MoviesShowsAdapter(movies) {
+            navigateToDetails(it.id)
         }
+        binding.recyclerviewTop250.adapter = adapter
+    }
+
+    private fun navigateToDetails(id:String){
+        val action=MoviesFragmentDirections.moviesToDetails(id)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

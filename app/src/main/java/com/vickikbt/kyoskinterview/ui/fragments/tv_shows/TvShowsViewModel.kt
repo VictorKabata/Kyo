@@ -3,9 +3,7 @@ package com.vickikbt.kyoskinterview.ui.fragments.tv_shows
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vickikbt.domain.models.InTheatersComingSoon
-import com.vickikbt.domain.models.PopularMovieShow
-import com.vickikbt.domain.models.Top250MovieShow
+import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.usecases.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -16,13 +14,13 @@ class TvShowsViewModel constructor(
     private val getTop250TvShowUseCase: GetTop250TvShowUseCase
 ) : ViewModel() {
 
-    private val _comingSoon = MutableLiveData<List<InTheatersComingSoon>>()
+    private val _comingSoon = MutableLiveData<List<MovieShow>>()
     val comingSoon get() = _comingSoon
 
-    private val _popularTvShows = MutableLiveData<List<PopularMovieShow>>()
+    private val _popularTvShows = MutableLiveData<List<MovieShow>>()
     val popularTvShows get() = _popularTvShows
 
-    private val _top250TvShows = MutableLiveData<List<Top250MovieShow>>()
+    private val _top250TvShows = MutableLiveData<List<MovieShow>>()
     val top250TvShows get() = _top250TvShows
 
     init {

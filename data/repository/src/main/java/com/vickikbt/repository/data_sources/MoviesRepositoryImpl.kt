@@ -2,13 +2,9 @@ package com.vickikbt.repository.data_sources
 
 import androidx.lifecycle.MutableLiveData
 import com.vickikbt.cache.AppDatabase
-import com.vickikbt.cache.models.InTheatersComingSoonEntity
-import com.vickikbt.cache.models.PopularMovieShowEntity
-import com.vickikbt.cache.models.Top250MovieShowEntity
+import com.vickikbt.cache.models.MovieShowEntity
 import com.vickikbt.commons.Constants
-import com.vickikbt.domain.models.InTheatersComingSoon
-import com.vickikbt.domain.models.PopularMovieShow
-import com.vickikbt.domain.models.Top250MovieShow
+import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.repositories.MoviesRepository
 import com.vickikbt.network.ApiService
 import com.vickikbt.network.utils.SafeApiRequest
@@ -21,9 +17,9 @@ class MoviesRepositoryImpl constructor(
     private val appDatabase: AppDatabase
 ) : MoviesRepository, SafeApiRequest() {
 
-    private val _inTheatersMoviesEntity = MutableLiveData<List<InTheatersComingSoonEntity>>()
-    private val _popularMoviesEntity = MutableLiveData<List<PopularMovieShowEntity>>()
-    private val _top250MoviesEntity = MutableLiveData<List<Top250MovieShowEntity>>()
+    private val _inTheatersMoviesEntity = MutableLiveData<List<MovieShowEntity>>()
+    private val _popularMoviesEntity = MutableLiveData<List<MovieShowEntity>>()
+    private val _top250MoviesEntity = MutableLiveData<List<MovieShowEntity>>()
 
     init {
         _inTheatersMoviesEntity.observeForever {
@@ -39,7 +35,7 @@ class MoviesRepositoryImpl constructor(
         }
     }
 
-    override suspend fun fetchInTheatersMovies(): List<InTheatersComingSoon> {
+    override suspend fun fetchInTheatersMovies(): List<MovieShow> {
         val isCacheResponseAvailable = appDatabase.moviesDao().isInTheaterMoviesCacheAvailable() > 0
 
         return if (isCacheResponseAvailable) {
@@ -54,7 +50,7 @@ class MoviesRepositoryImpl constructor(
         }
     }
 
-    override suspend fun fetchPopularMovies(): List<PopularMovieShow> {
+    override suspend fun fetchPopularMovies(): List<MovieShow> {
         val isCacheResponseAvailable = appDatabase.moviesDao().isPopularMoviesCacheAvailable() > 0
 
         return if (isCacheResponseAvailable) {
@@ -69,7 +65,7 @@ class MoviesRepositoryImpl constructor(
         }
     }
 
-    override suspend fun fetchTop250Movies(): List<Top250MovieShow> {
+    override suspend fun fetchTop250Movies(): List<MovieShow> {
         val isCacheResponseAvailable = appDatabase.moviesDao().isTop250MoviesCacheAvailable() > 0
 
         return if (isCacheResponseAvailable) {
@@ -78,18 +74,18 @@ class MoviesRepositoryImpl constructor(
         } else {
             val networkResponse = safeApiRequest { apiService.fetchTop250Movies() }
             _top250MoviesEntity.value =
-                networkResponse.top250MovieShows?.map { it.toEntity(category = Constants.TOP_250_MOVIE) }
+                networkResponse.movieShows?.map { it.toEntity(category = Constants.TOP_250_MOVIE) }
 
             appDatabase.moviesDao().getTop250Movies().map { it.toDomain() }
         }
     }
 
-    private suspend fun saveInTheatersMovies(inTheaterMovies: List<InTheatersComingSoonEntity>) =
+    private suspend fun saveInTheatersMovies(inTheaterMovies: List<MovieShowEntity>) =
         appDatabase.moviesDao().saveInTheatersMovies(inTheaterMovies)
 
-    private suspend fun savePopularMovies(popularMovies: List<PopularMovieShowEntity>) =
+    private suspend fun savePopularMovies(popularMovies: List<MovieShowEntity>) =
         appDatabase.moviesDao().savePopularMovies(popularMovies)
 
-    private suspend fun saveTop250Movies(top250Movies: List<Top250MovieShowEntity>) =
-        appDatabase.moviesDao().saveTop250Movies(top250Movies)
+    private suspend fun saveTop250Movies(movies: List<MovieShowEntity>) =
+        appDatabase.moviesDao().saveTop250Movies(movies)
 }

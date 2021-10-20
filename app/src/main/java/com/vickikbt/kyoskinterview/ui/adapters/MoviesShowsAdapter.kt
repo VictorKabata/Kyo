@@ -8,41 +8,46 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.vickikbt.domain.models.Top250MovieShow
+import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemRvMovieBinding
 
+class MoviesShowsAdapter constructor(
+    private val movies: List<MovieShow>,
+    private val onClick: (MovieShow) -> Unit
+) : RecyclerView.Adapter<MoviesShowsAdapter.MoviesShowsViewHolder>() {
 
-class Top250MoviesAdapter constructor(private val top250Movies: List<Top250MovieShow>) :
-    RecyclerView.Adapter<Top250MoviesAdapter.Top250MovieViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Top250MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesShowsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemRvMovieBinding.inflate(layoutInflater, parent, false)
 
-        return Top250MovieViewHolder(binding)
+        return MoviesShowsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: Top250MovieViewHolder, position: Int) {
-        val top250Movie = top250Movies[position]
+    override fun onBindViewHolder(holder: MoviesShowsViewHolder, position: Int) {
+        val movieShow = movies[position]
         val context = holder.itemView.context
 
-        holder.bind(context, top250Movie)
+        holder.bind(context, movieShow)
+
+        holder.itemView.setOnClickListener {
+            onClick(movieShow)
+        }
     }
 
-    override fun getItemCount() = top250Movies.size
+    override fun getItemCount() = 12 //movies.size
 
-    inner class Top250MovieViewHolder(private val binding: ItemRvMovieBinding) :
+    inner class MoviesShowsViewHolder(private val binding: ItemRvMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(context: Context, top250Movie: Top250MovieShow) {
+        fun bind(context: Context, movie: MovieShow) {
             Glide.with(context)
-                .load(top250Movie.image)
+                .load(movie.image)
                 .transition(DrawableTransitionOptions.withCrossFade(500))
                 .into(binding.imageViewImage)
 
-            binding.textViewName.text = top250Movie.title
+            binding.textViewName.text = movie.title
 
-            val rating = top250Movie.imDbRating
+            val rating = movie.imDbRating
 
             if (rating != "0.0" && !rating.isNullOrEmpty()) {
                 val firstPart = rating.substringAfter(".")
