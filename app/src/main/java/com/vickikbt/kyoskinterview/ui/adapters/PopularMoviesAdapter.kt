@@ -1,7 +1,9 @@
 package com.vickikbt.kyoskinterview.ui.adapters
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,6 +40,18 @@ class PopularMoviesAdapter constructor(private val popularMovies: List<PopularMo
                 .into(binding.imageViewImage)
 
             binding.textViewName.text = popularMovie.title
+
+            val rating = popularMovie.imDbRating
+
+            if (rating != "0.0" && !rating.isNullOrEmpty()) {
+                val firstPart = rating.substringAfter(".")
+                val lastPart = rating.substring(rating.length - 1)
+                val subString = Html.fromHtml("${firstPart}.<sup>$lastPart</sup>")
+
+                binding.textViewRating.text = subString
+            } else {
+                binding.frameLayoutRating.visibility = View.GONE
+            }
         }
     }
 }
