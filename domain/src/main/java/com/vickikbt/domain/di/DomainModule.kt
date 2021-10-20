@@ -11,4 +11,8 @@ val domainModule = module {
     single { GetComingSoonUseCase(get()) }
     single { GetPopularTvShowsUseCase(get()) }
     single { GetTop250TvShowUseCase(get()) }
+
+    single { GetPlotUseCase(get()) }
+    single { GetTrailerUseCase(get()) }
+    single { GetCastUseCase(get()) }
 }

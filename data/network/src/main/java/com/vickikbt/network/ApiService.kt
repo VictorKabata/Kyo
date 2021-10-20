@@ -1,9 +1,7 @@
 package com.vickikbt.network
 
 import com.vickikbt.commons.Constants
-import com.vickikbt.network.models.InTheatersComingSoonResponseDto
-import com.vickikbt.network.models.PopularMoviesShowsResponseDto
-import com.vickikbt.network.models.Top250MoviesShowsResponseDto
+import com.vickikbt.network.models.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,4 +30,23 @@ interface ApiService {
     suspend fun fetchTop250TvShows(@Path("apiKey") apiKey: String = Constants.API_KEY): Response<Top250MoviesShowsResponseDto>
     //endregion
 
+    //region Details Endpoints
+    @GET("Wikipedia/{apiKey}/{id}")
+    suspend fun fetchPlot(
+        @Path("apiKey") apiKey: String = Constants.API_KEY,
+        @Path("id") id: String
+    ): Response<PlotResponseDto>
+
+    @GET("Trailer/{apiKey}/{id}")
+    suspend fun fetchTrailer(
+        @Path("apiKey") apiKey: String = Constants.API_KEY,
+        @Path("id") id: String
+    ): Response<TrailerResponseDto>
+
+    @GET("FullCast/{apiKey}/{id}")
+    suspend fun fetchCast(
+        @Path("apiKey") apiKey: String = Constants.API_KEY,
+        @Path("id") id: String
+    ): Response<CastResponseDto>
+    //endregion
 }
