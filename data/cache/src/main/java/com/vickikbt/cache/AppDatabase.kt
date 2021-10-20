@@ -4,8 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.vickikbt.cache.converters.MoviesShowsConverter
-import com.vickikbt.cache.daos.MoviesDao
-import com.vickikbt.cache.daos.TvShowsDao
+import com.vickikbt.cache.daos.MoviesShowsDao
 import com.vickikbt.cache.models.MovieShowEntity
 
 @Database(
@@ -15,7 +14,6 @@ import com.vickikbt.cache.models.MovieShowEntity
 @TypeConverters(MoviesShowsConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun moviesDao(): MoviesDao
-    abstract fun tvShowsDao(): TvShowsDao
+    abstract fun moviesDao(): MoviesShowsDao
 
 }

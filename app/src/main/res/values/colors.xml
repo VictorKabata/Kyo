@@ -9,4 +9,6 @@
 
     <color name="textPrimary">#212121</color>
     <color name="textSecondary">#666666</color>
+
+    <color name="golden">#FBC02D</color>
 </resources>

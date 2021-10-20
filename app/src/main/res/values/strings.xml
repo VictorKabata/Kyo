@@ -15,4 +15,9 @@
     <string name="coming_soon">Coming Soon</string>
     <string name="cd_rating">Rating</string>
     <string name="title_details">Details</string>
+    <string name="back">Back</string>
+    <string name="placeholder_plot">Having spent most of her life exploring the jungle, nothing could prepare Dora for her most dangerous adventure yet — high school.</string>
+    <string name="cast">Cast</string>
+    <string name="trailer">Trailer</string>
+    <string name="cd_cast_image">Cast Image</string>
 </resources>

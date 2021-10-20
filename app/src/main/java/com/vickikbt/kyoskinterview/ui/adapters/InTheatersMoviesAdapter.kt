@@ -13,7 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.vickikbt.domain.models.MovieShow
-import com.vickikbt.kyoskinterview.databinding.ItemHeaderViewpagerBinding
+import com.vickikbt.kyoskinterview.databinding.ItemViewpagerMoviesBinding
 import timber.log.Timber
 
 class InTheatersMoviesAdapter constructor(
@@ -22,7 +22,7 @@ class InTheatersMoviesAdapter constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemHeaderViewpagerBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemViewpagerMoviesBinding.inflate(layoutInflater, parent, false)
 
         return ViewHolder(binding)
     }
@@ -36,14 +36,12 @@ class InTheatersMoviesAdapter constructor(
 
     override fun getItemCount() = inTheaterMovies.size
 
-    inner class ViewHolder(private val binding: ItemHeaderViewpagerBinding) :
+    inner class ViewHolder(private val binding: ItemViewpagerMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(context: Context, inTheatersMovie: MovieShow) {
             Glide.with(context)
                 .load(inTheatersMovie.image)
-                //.placeholder(R.drawable.image_placeholder)
-                //.error(R.drawable.image_placeholder)
                 .transition(DrawableTransitionOptions.withCrossFade(500))
                 .listener(object : RequestListener<Drawable> {
 

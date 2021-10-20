@@ -6,41 +6,40 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
+
         <OnSwipe
             motion:dragDirection="dragUp"
             motion:onTouchUp="decelerateAndComplete"
-            motion:touchAnchorId="@id/scrollview_tv_shows"
+            motion:touchAnchorId="@id/scrollView_details"
             motion:touchAnchorSide="middle" />
+
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/appBar_tv_shows"
+            android:id="@+id/fel"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
-            android:id="@+id/scrollview_tv_shows"
+            android:id="@+id/scrollView_details"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/appBar_tv_shows" />
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/fel" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/appBar_tv_shows"
+            android:id="@+id/fel"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:alpha="0.7"
+            android:alpha="0"
             motion:layout_constraintTop_toTopOf="parent" />
+
         <Constraint
-            android:id="@+id/scrollview_tv_shows"
+            android:id="@+id/scrollView_details"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/appBar_tv_shows" />
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/fel" />
     </ConstraintSet>
 </MotionScene>
