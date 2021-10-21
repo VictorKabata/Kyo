@@ -11,4 +11,6 @@ interface MoviesRepository {
 
     suspend fun fetchTop250Movies(): Flow<List<MovieShow>>
 
+    //suspend fun saveMoviesShows(movieShow: List<MovieShow>)
+
 }

@@ -20,7 +20,7 @@ class MoviesShowsDaoTest {
     private lateinit var moviesShowsDao: MoviesShowsDao
 
     private var movieShowEntity = MovieShowEntity("id", "6.9", "420", "image", "title", "category")
-    private val moviesShowsEntities = listOf(movieShowEntity)
+    private val moviesShowsEntities = mutableListOf(movieShowEntity)
 
     @Before
     fun setUp() {
