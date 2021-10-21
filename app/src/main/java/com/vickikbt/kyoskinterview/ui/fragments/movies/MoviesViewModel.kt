@@ -29,9 +29,9 @@ class MoviesViewModel constructor(
     val top250Movies: StateFlow<UiState> = _top250Movies
 
     init {
-        getInTheaterMovies()
-        getPopularMovies()
         getTop250Movies()
+        getPopularMovies()
+        getInTheaterMovies()
     }
 
     private fun getInTheaterMovies() = viewModelScope.launch {
@@ -60,7 +60,7 @@ class MoviesViewModel constructor(
                 UiState.Error(e.localizedMessage ?: "Check your internet connection")
         } catch (e: IOException) {
             _popularMovies.value =
-                UiState.Error(e.localizedMessage ?: "An unknown error occured")
+                UiState.Error(e.localizedMessage ?: "An unknown error occurred")
         }
     }
 

@@ -3,6 +3,9 @@ package com.vickikbt.kyoskinterview.ui.fragments.tv_shows
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -12,7 +15,11 @@ import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentTvShowsBinding
 import com.vickikbt.kyoskinterview.ui.adapters.InTheatersMoviesAdapter
 import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsAdapter
+import com.vickikbt.kyoskinterview.utils.UiState
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import kotlin.math.abs
 
 
@@ -31,20 +38,66 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
     }
 
     private fun initUI() {
-        viewModel.comingSoon.observe(viewLifecycleOwner) { comingSoon ->
-            initInTheatersMovies(comingSoon)
-        }
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-        viewModel.popularTvShows.observe(viewLifecycleOwner) { popularTvShows ->
-            initPopularMovies(popularTvShows)
-        }
+                launch {
+                    viewModel.comingSoon.collect { uiState ->
+                        when (uiState) {
+                            is UiState.Loading -> {
+                                //ToDo: Show loading state for in theater movies
+                            }
+                            is UiState.Error -> {
+                                //ToDo: Show error message
+                                Timber.e("Error: ${uiState.error}")
+                            }
+                            is UiState.Success -> {
+                                initComingSoon(uiState.data)
+                            }
+                        }
+                    }
+                }
 
-        viewModel.top250TvShows.observe(viewLifecycleOwner) { top250TvShows ->
-            initTop250Movies(top250TvShows)
+                launch {
+                    viewModel.popularTvShows.collect { uiState ->
+                        when (uiState) {
+                            is UiState.Loading -> {
+                                //ToDo: Show loading state for popular movies
+                            }
+                            is UiState.Error -> {
+                                //ToDo: Show error message
+                                Timber.e("Error: ${uiState.error}")
+                            }
+                            is UiState.Success -> {
+                                initPopularTvShows(uiState.data)
+                            }
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.top250TvShows.collect { uiState ->
+                        when (uiState) {
+                            is UiState.Loading -> {
+                                //ToDo: Show loading state for top 250 movies
+                            }
+                            is UiState.Error -> {
+                                //ToDo: Show error message
+                                Timber.e("Error: ${uiState.error}")
+                            }
+                            is UiState.Success -> {
+                                initTop250TvShows(uiState.data)
+                            }
+                        }
+                    }
+                }
+
+            }
+
         }
     }
 
-    private fun initInTheatersMovies(comingSoon: List<MovieShow>) {
+    private fun initComingSoon(comingSoon: List<MovieShow>) {
         val viewPagerAdapter = InTheatersMoviesAdapter(comingSoon)
 
         val compositePageTransformer = CompositePageTransformer()
@@ -64,7 +117,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
         }
     }
 
-    private fun initPopularMovies(popularTvShows: List<MovieShow>) {
+    private fun initPopularTvShows(popularTvShows: List<MovieShow>) {
         val adapter = MoviesShowsAdapter(popularTvShows) {
             navigateToDetails(it.id)
         }
@@ -72,7 +125,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
         binding.recyclerviewPopular.adapter = adapter
     }
 
-    private fun initTop250Movies(tvShows: List<MovieShow>) {
+    private fun initTop250TvShows(tvShows: List<MovieShow>) {
         val adapter = MoviesShowsAdapter(tvShows) {
             navigateToDetails(it.id)
         }
