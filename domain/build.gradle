@@ -9,6 +9,8 @@ java {
 }
 
 dependencies {
+    implementation project(":commons")
+
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     implementation "io.insert-koin:koin-core:$koin_version"

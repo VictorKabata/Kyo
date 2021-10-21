@@ -7,7 +7,6 @@ import com.vickikbt.commons.Constants
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.repositories.MoviesRepository
 import com.vickikbt.network.ApiService
-import com.vickikbt.network.utils.SafeApiRequest
 import com.vickikbt.repository.mappers.toDomain
 import com.vickikbt.repository.mappers.toEntity
 import com.vickikbt.repository.utils.Coroutines
@@ -17,7 +16,7 @@ import kotlinx.coroutines.flow.map
 class MoviesRepositoryImpl constructor(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
-) : MoviesRepository, SafeApiRequest() {
+) : MoviesRepository {
 
     private val _inTheatersMoviesEntity = MutableLiveData<List<MovieShowEntity>>()
     private val _popularMoviesEntity = MutableLiveData<List<MovieShowEntity>>()
@@ -46,7 +45,7 @@ class MoviesRepositoryImpl constructor(
                 appDatabase.moviesDao().getMoviesShows(category = Constants.IN_THEATERS)
             cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
-            val networkResponse = safeApiRequest { apiService.fetchInTheaterMovies() }
+            val networkResponse = apiService.fetchInTheaterMovies()
             _inTheatersMoviesEntity.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.IN_THEATERS) }
 
@@ -65,7 +64,7 @@ class MoviesRepositoryImpl constructor(
                 appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_MOVIE)
             cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
-            val networkResponse = safeApiRequest { apiService.fetchPopularMovies() }
+            val networkResponse = apiService.fetchPopularMovies()
             _popularMoviesEntity.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.POPULAR_MOVIE) }
 
@@ -84,7 +83,7 @@ class MoviesRepositoryImpl constructor(
                 appDatabase.moviesDao().getMoviesShows(category = Constants.TOP_250_MOVIE)
             cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
-            val networkResponse = safeApiRequest { apiService.fetchTop250Movies() }
+            val networkResponse = apiService.fetchTop250Movies()
             _top250MoviesEntity.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.TOP_250_MOVIE) }
 

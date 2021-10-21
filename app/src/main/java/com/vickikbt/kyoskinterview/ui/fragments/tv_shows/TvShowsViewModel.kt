@@ -1,13 +1,17 @@
 package com.vickikbt.kyoskinterview.ui.fragments.tv_shows
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vickikbt.domain.models.MovieShow
-import com.vickikbt.domain.usecases.*
-import kotlinx.coroutines.flow.Flow
+import com.vickikbt.domain.usecases.GetComingSoonUseCase
+import com.vickikbt.domain.usecases.GetPopularTvShowsUseCase
+import com.vickikbt.domain.usecases.GetTop250TvShowUseCase
+import com.vickikbt.kyoskinterview.utils.UiState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import okio.IOException
+import java.net.UnknownHostException
 
 class TvShowsViewModel constructor(
     private val getComingSoonUseCase: GetComingSoonUseCase,
@@ -15,14 +19,14 @@ class TvShowsViewModel constructor(
     private val getTop250TvShowUseCase: GetTop250TvShowUseCase
 ) : ViewModel() {
 
-    private val _comingSoon = MutableLiveData<Flow<List<MovieShow>>>()
-    val comingSoon get() = _comingSoon
+    private val _comingSoon = MutableStateFlow<UiState>(UiState.Loading)
+    val comingSoon: StateFlow<UiState> = _comingSoon
 
-    private val _popularTvShows = MutableLiveData<Flow<List<MovieShow>>>()
-    val popularTvShows get() = _popularTvShows
+    private val _popularTvShows = MutableStateFlow<UiState>(UiState.Loading)
+    val popularTvShows: StateFlow<UiState> = _popularTvShows
 
-    private val _top250TvShows = MutableLiveData<Flow<List<MovieShow>>>()
-    val top250TvShows get() = _top250TvShows
+    private val _top250TvShows = MutableStateFlow<UiState>(UiState.Loading)
+    val top250TvShows: StateFlow<UiState> = _top250TvShows
 
     init {
         getComingSoon()
@@ -30,39 +34,48 @@ class TvShowsViewModel constructor(
         getTop250TvShows()
     }
 
-    private fun getComingSoon() {
+    private fun getComingSoon() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getComingSoonUseCase.invoke()
-                _comingSoon.value = response
-                return@launch
+            val response = getComingSoonUseCase.invoke()
+            response.collect {
+                _comingSoon.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _comingSoon.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _comingSoon.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 
-    private fun getPopularTvShows() {
+    private fun getPopularTvShows() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getPopularTvShowsUseCase.invoke()
-                _popularTvShows.value = response
-                return@launch
+            val response = getPopularTvShowsUseCase.invoke()
+            response.collect {
+                _popularTvShows.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _popularTvShows.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _popularTvShows.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 
-    private fun getTop250TvShows() {
+    private fun getTop250TvShows() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getTop250TvShowUseCase.invoke()
-                _top250TvShows.value = response
-                return@launch
+            val response = getTop250TvShowUseCase.invoke()
+            response.collect {
+                _top250TvShows.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _comingSoon.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _comingSoon.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 

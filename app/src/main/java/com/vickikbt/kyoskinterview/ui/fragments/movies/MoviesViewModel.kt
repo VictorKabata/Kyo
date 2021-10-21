@@ -1,15 +1,17 @@
 package com.vickikbt.kyoskinterview.ui.fragments.movies
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.usecases.GetInTheaterMoviesUseCase
 import com.vickikbt.domain.usecases.GetPopularMoviesUseCase
 import com.vickikbt.domain.usecases.GetTop250MoviesUseCase
-import kotlinx.coroutines.flow.Flow
+import com.vickikbt.kyoskinterview.utils.UiState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import okio.IOException
+import java.net.UnknownHostException
 
 class MoviesViewModel constructor(
     private val getInTheaterMoviesUseCase: GetInTheaterMoviesUseCase,
@@ -17,14 +19,14 @@ class MoviesViewModel constructor(
     private val getTop250MoviesUseCase: GetTop250MoviesUseCase
 ) : ViewModel() {
 
-    private val _inTheatersMovies = MutableLiveData<Flow<List<MovieShow>>>()
-    val inTheatersMovies get() = _inTheatersMovies
+    private val _inTheatersMovies = MutableStateFlow<UiState>(UiState.Loading)
+    val inTheatersMovies: StateFlow<UiState> = _inTheatersMovies
 
-    private val _popularMovies = MutableLiveData<Flow<List<MovieShow>>>()
-    val popularMovies get() = _popularMovies
+    private val _popularMovies = MutableStateFlow<UiState>(UiState.Loading)
+    val popularMovies: StateFlow<UiState> = _popularMovies
 
-    private val _top250Movies = MutableLiveData<Flow<List<MovieShow>>>()
-    val top250Movies get() = _top250Movies
+    private val _top250Movies = MutableStateFlow<UiState>(UiState.Loading)
+    val top250Movies: StateFlow<UiState> = _top250Movies
 
     init {
         getInTheaterMovies()
@@ -32,39 +34,48 @@ class MoviesViewModel constructor(
         getTop250Movies()
     }
 
-    private fun getInTheaterMovies() {
+    private fun getInTheaterMovies() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getInTheaterMoviesUseCase.invoke()
-                _inTheatersMovies.value = response
-                return@launch
+            val response = getInTheaterMoviesUseCase.invoke()
+            response.collect {
+                _inTheatersMovies.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _inTheatersMovies.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _inTheatersMovies.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 
-    private fun getPopularMovies() {
+    private fun getPopularMovies() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getPopularMoviesUseCase.invoke()
-                _popularMovies.value = response
-                return@launch
+            val response = getPopularMoviesUseCase.invoke()
+            response.collect {
+                _popularMovies.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _popularMovies.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _popularMovies.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 
-    private fun getTop250Movies() {
+    private fun getTop250Movies() = viewModelScope.launch {
         try {
-            viewModelScope.launch {
-                val response = getTop250MoviesUseCase.invoke()
-                _top250Movies.value = response
-                return@launch
+            val response = getTop250MoviesUseCase.invoke()
+            response.collect {
+                _top250Movies.value = UiState.Success(it)
             }
-        } catch (e: Exception) {
-            Timber.e("Error: ${e.message}")
+        } catch (e: UnknownHostException) {
+            _top250Movies.value =
+                UiState.Error(e.localizedMessage ?: "Check your internet connection")
+        } catch (e: IOException) {
+            _top250Movies.value =
+                UiState.Error(e.localizedMessage ?: "An unknown error occured")
         }
     }
 
