@@ -16,4 +16,5 @@ val domainModule = module {
     single { GetTrailerUseCase(get()) }
     single { GetCastUseCase(get()) }
     single { GetMovieShowById(get()) }
+    single { GetMoviesShowsByCategoryUseCase(get()) }
 }

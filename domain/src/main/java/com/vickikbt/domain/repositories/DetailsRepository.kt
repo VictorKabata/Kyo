@@ -16,4 +16,6 @@ interface DetailsRepository {
 
     suspend fun getMovieShowById(id:String): Flow<MovieShow>
 
+    suspend fun getMoviesShowsByCategory(category:String): Flow<List<MovieShow>>
+
 }

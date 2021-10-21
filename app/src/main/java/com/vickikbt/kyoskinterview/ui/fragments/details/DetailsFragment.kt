@@ -72,11 +72,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         binding.textViewTitle.text = movieShow.title
 
-        val rating = movieShow.imDbRating?.getRating()
+        val rating = movieShow.imDbRating
 
-        if (rating != null && rating != 0) {
-            binding.textViewRating.text = rating.toString()
-            binding.ratingBarRating.rating = rating.toFloat()
+        if (rating != "0.0" && !rating.isNullOrEmpty()) {
+            val calculatedRating = rating.getRating()
+
+            binding.textViewRating.text = calculatedRating.toString()
+            binding.ratingBarRating.rating = calculatedRating.toFloat()
         } else {
             binding.textViewRating.visibility = View.GONE
             binding.ratingBarRating.visibility = View.GONE
@@ -84,14 +86,19 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun initPlot(plot: PlotShort) {
-        binding.textViewPlot.text = plot.plainText
+        binding.textViewPlot.text = plot.plainText ?: "Oops! No plot available"
     }
 
-    private fun initTrailer(trailerResponse: TrailerResponse) {
-        Glide.with(requireContext())
-            .load(trailerResponse.thumbnailUrl)
-            .transition(DrawableTransitionOptions.withCrossFade(500))
-            .into(binding.imageViewTrailer)
+    private fun initTrailer(trailerResponse: TrailerResponse?) {
+        if (trailerResponse != null) {
+            Glide.with(requireContext())
+                .load(trailerResponse.thumbnailUrl)
+                .transition(DrawableTransitionOptions.withCrossFade(500))
+                .into(binding.imageViewTrailer)
+        } else {
+            binding.textViewTrailerTitle.visibility = View.GONE
+            binding.cardViewTrailer.visibility = View.GONE
+        }
     }
 
     private fun initCast(actors: List<Actor>) {

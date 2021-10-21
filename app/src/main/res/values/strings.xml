@@ -20,4 +20,5 @@
     <string name="cast">Cast</string>
     <string name="trailer">Trailer</string>
     <string name="cd_cast_image">Cast Image</string>
+    <string name="all_content">All Content</string>
 </resources>

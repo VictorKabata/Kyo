@@ -1,6 +1,7 @@
 package com.vickikbt.kyoskinterview.ui.adapters
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemRvMovieBinding
+import com.vickikbt.kyoskinterview.databinding.ItemRvMovieGridBinding
 
-class MoviesShowsRecyclerviewAdapter constructor(
+class MoviesShowsGridRecyclerviewAdapter constructor(
     private val movies: List<MovieShow>,
     private val onClick: (MovieShow) -> Unit
-) : RecyclerView.Adapter<MoviesShowsRecyclerviewAdapter.MoviesShowsViewHolder>() {
+) : RecyclerView.Adapter<MoviesShowsGridRecyclerviewAdapter.MoviesShowsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesShowsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemRvMovieBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemRvMovieGridBinding.inflate(layoutInflater, parent, false)
 
         return MoviesShowsViewHolder(binding)
     }
@@ -35,7 +37,7 @@ class MoviesShowsRecyclerviewAdapter constructor(
 
     override fun getItemCount() = 12 //movies.size
 
-    inner class MoviesShowsViewHolder(private val binding: ItemRvMovieBinding) :
+    inner class MoviesShowsViewHolder(private val binding: ItemRvMovieGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(context: Context, movie: MovieShow) {

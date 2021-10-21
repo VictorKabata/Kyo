@@ -34,4 +34,9 @@ class DetailsRepositoryImpl constructor(
     override suspend fun getMovieShowById(id: String): Flow<MovieShow> {
         return appDatabase.moviesDao().getMoviesShowsById(id).map { it.toDomain() }
     }
+
+    override suspend fun getMoviesShowsByCategory(category: String): Flow<List<MovieShow>> {
+        val cacheResponse = appDatabase.moviesDao().getMoviesShows(category)
+        return cacheResponse.map { it.map { moviesShowsList -> moviesShowsList.toDomain() } }
+    }
 }

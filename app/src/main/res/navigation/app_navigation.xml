@@ -13,6 +13,9 @@
         <action
             android:id="@+id/movies_to_details"
             app:destination="@id/detail_fragment" />
+        <action
+            android:id="@+id/movies_to_all_content"
+            app:destination="@id/all_content_fragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,9 @@
         <action
             android:id="@+id/tv_shows_to_details"
             app:destination="@id/detail_fragment" />
+        <action
+            android:id="@+id/tv_shows_to_all_content"
+            app:destination="@id/all_content_fragment" />
     </fragment>
 
     <fragment
@@ -39,6 +45,18 @@
         <argument
             android:name="id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/all_content_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.all_content.AllContentFragment"
+        android:label="@string/all_content"
+        tools:layout="@layout/fragment_all_content">
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/all_content_to_details"
+            app:destination="@id/detail_fragment" />
     </fragment>
 
 </navigation>

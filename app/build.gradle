@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation project(":commons")
     implementation project(":data:repository")
 
     implementation "androidx.core:core-ktx:$androidCore_version"

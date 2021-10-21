@@ -10,11 +10,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.vickikbt.commons.Constants
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentTvShowsBinding
 import com.vickikbt.kyoskinterview.ui.adapters.MovieShowViewPagerAdapter
 import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsRecyclerviewAdapter
+import com.vickikbt.kyoskinterview.ui.fragments.movies.MoviesFragmentDirections
 import com.vickikbt.kyoskinterview.utils.UiState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -38,6 +40,9 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
     }
 
     private fun initUI() {
+        binding.linearLayoutPopular.setOnClickListener { navigateToAllContent(Constants.POPULAR_TV_SHOW) }
+        binding.linearLayoutTop250.setOnClickListener { navigateToAllContent(Constants.TOP_250_TV_SHOW) }
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
@@ -143,6 +148,11 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
 
     private fun navigateToDetails(id: String) {
         val action = TvShowsFragmentDirections.tvShowsToDetails(id)
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToAllContent(category:String) {
+        val action = TvShowsFragmentDirections.tvShowsToAllContent(category)
         findNavController().navigate(action)
     }
 

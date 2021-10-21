@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.vickikbt.commons.Constants
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentMoviesBinding
@@ -38,6 +39,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     private fun initUI() {
+        binding.linearLayoutPopular.setOnClickListener { navigateToAllContent(Constants.POPULAR_MOVIE) }
+        binding.linearLayoutTop250.setOnClickListener { navigateToAllContent(Constants.TOP_250_MOVIE) }
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
@@ -141,6 +145,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun navigateToDetails(id: String) {
         val action = MoviesFragmentDirections.moviesToDetails(id)
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToAllContent(category:String) {
+        val action = MoviesFragmentDirections.moviesToAllContent(category)
         findNavController().navigate(action)
     }
 
