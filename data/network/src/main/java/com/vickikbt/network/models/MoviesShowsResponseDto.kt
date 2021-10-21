@@ -3,7 +3,7 @@ package com.vickikbt.network.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Top250MoviesShowsResponseDto(
+data class MoviesShowsResponseDto(
     @SerializedName("errorMessage")
     val errorMessage: String?,
 

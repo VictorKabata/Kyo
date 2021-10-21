@@ -12,8 +12,7 @@ import com.vickikbt.repository.mappers.toDomain
 class DetailsRepositoryImpl constructor(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
-) : DetailsRepository,
-    SafeApiRequest() {
+) : DetailsRepository, SafeApiRequest() {
 
     override suspend fun getPlot(id: String): PlotShort {
         val networkResponse = safeApiRequest { apiService.fetchPlot(id = id) }

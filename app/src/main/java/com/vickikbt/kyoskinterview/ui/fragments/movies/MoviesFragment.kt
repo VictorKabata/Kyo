@@ -79,8 +79,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         binding.recyclerviewTop250.adapter = adapter
     }
 
-    private fun navigateToDetails(id:String){
-        val action=MoviesFragmentDirections.moviesToDetails(id)
+    private fun navigateToDetails(id: String) {
+        val action = MoviesFragmentDirections.moviesToDetails(id)
         findNavController().navigate(action)
     }
 

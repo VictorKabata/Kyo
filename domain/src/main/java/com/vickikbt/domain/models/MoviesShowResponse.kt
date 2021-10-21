@@ -1,7 +1,7 @@
 package com.vickikbt.domain.models
 
 
-data class PopularMoviesShowResponse(
+data class MoviesShowResponse(
     val errorMessage: String?,
 
     val popularMovie: List<MovieShow>?

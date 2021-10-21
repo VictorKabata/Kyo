@@ -46,7 +46,7 @@ class TvShowsRepositoryImpl constructor(
         } else {
             val networkResponse = safeApiRequest { apiService.fetchComingSoon() }
             _comingSoon.value =
-                networkResponse.inTheatersComingSoonMovies?.map { it.toEntity(category = Constants.COMING_SOON) }
+                networkResponse.movieShows?.map { it.toEntity(category = Constants.COMING_SOON) }
 
             appDatabase.moviesDao().getMoviesShows(category = Constants.COMING_SOON)
                 .map { it.toDomain() }
@@ -64,7 +64,7 @@ class TvShowsRepositoryImpl constructor(
         } else {
             val networkResponse = safeApiRequest { apiService.fetchPopularTvShows() }
             _popularTvShowsEntity.value =
-                networkResponse.popularMovieShow?.map { it.toEntity(category = Constants.POPULAR_TV_SHOW) }
+                networkResponse.movieShows?.map { it.toEntity(category = Constants.POPULAR_TV_SHOW) }
 
             appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_TV_SHOW)
                 .map { it.toDomain() }

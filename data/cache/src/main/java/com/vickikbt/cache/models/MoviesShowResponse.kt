@@ -1,7 +1,7 @@
 package com.vickikbt.cache.models
 
 
-data class Top250MoviesShowsResponseEntity(
+data class MoviesShowResponse(
     val errorMessage: String?,
 
     val movies: List<MovieShowEntity>?

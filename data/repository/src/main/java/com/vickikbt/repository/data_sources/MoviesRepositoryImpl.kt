@@ -40,14 +40,16 @@ class MoviesRepositoryImpl constructor(
             appDatabase.moviesDao().isMovieShowCacheAvailable(category = Constants.IN_THEATERS) > 0
 
         return if (isCacheResponseAvailable) {
-            val cacheResponse = appDatabase.moviesDao().getMoviesShows(category = Constants.IN_THEATERS)
+            val cacheResponse =
+                appDatabase.moviesDao().getMoviesShows(category = Constants.IN_THEATERS)
             cacheResponse.map { it.toDomain() }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchInTheaterMovies() }
             _inTheatersMoviesEntity.value =
-                networkResponse.inTheatersComingSoonMovies?.map { it.toEntity(category = Constants.IN_THEATERS) }
+                networkResponse.movieShows?.map { it.toEntity(category = Constants.IN_THEATERS) }
 
-            appDatabase.moviesDao().getMoviesShows(category = Constants.IN_THEATERS).map { it.toDomain() }
+            appDatabase.moviesDao().getMoviesShows(category = Constants.IN_THEATERS)
+                .map { it.toDomain() }
         }
     }
 
@@ -62,7 +64,7 @@ class MoviesRepositoryImpl constructor(
         } else {
             val networkResponse = safeApiRequest { apiService.fetchPopularMovies() }
             _popularMoviesEntity.value =
-                networkResponse.popularMovieShow?.map { it.toEntity(category = Constants.POPULAR_MOVIE) }
+                networkResponse.movieShows?.map { it.toEntity(category = Constants.POPULAR_MOVIE) }
 
             appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_MOVIE)
                 .map { it.toDomain() }
