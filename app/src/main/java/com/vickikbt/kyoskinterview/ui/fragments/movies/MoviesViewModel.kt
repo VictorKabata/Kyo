@@ -7,6 +7,7 @@ import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.usecases.GetInTheaterMoviesUseCase
 import com.vickikbt.domain.usecases.GetPopularMoviesUseCase
 import com.vickikbt.domain.usecases.GetTop250MoviesUseCase
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -16,13 +17,13 @@ class MoviesViewModel constructor(
     private val getTop250MoviesUseCase: GetTop250MoviesUseCase
 ) : ViewModel() {
 
-    private val _inTheatersMovies = MutableLiveData<List<MovieShow>>()
+    private val _inTheatersMovies = MutableLiveData<Flow<List<MovieShow>>>()
     val inTheatersMovies get() = _inTheatersMovies
 
-    private val _popularMovies = MutableLiveData<List<MovieShow>>()
+    private val _popularMovies = MutableLiveData<Flow<List<MovieShow>>>()
     val popularMovies get() = _popularMovies
 
-    private val _top250Movies = MutableLiveData<List<MovieShow>>()
+    private val _top250Movies = MutableLiveData<Flow<List<MovieShow>>>()
     val top250Movies get() = _top250Movies
 
     init {

@@ -6,6 +6,7 @@ import com.vickikbt.domain.usecases.GetCastUseCase
 import com.vickikbt.domain.usecases.GetMovieShowById
 import com.vickikbt.domain.usecases.GetPlotUseCase
 import com.vickikbt.domain.usecases.GetTrailerUseCase
+import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
 class DetailsViewModel constructor(
@@ -44,7 +45,7 @@ class DetailsViewModel constructor(
 
     fun getMovieShowById(id: String) = liveData {
         try {
-            val response = getMovieShowById.invoke(id)
+            val response = getMovieShowById.invoke(id).first()
             emit(response)
         } catch (e: Exception) {
             Timber.e("Error: ${e.message}")

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.usecases.*
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -14,13 +15,13 @@ class TvShowsViewModel constructor(
     private val getTop250TvShowUseCase: GetTop250TvShowUseCase
 ) : ViewModel() {
 
-    private val _comingSoon = MutableLiveData<List<MovieShow>>()
+    private val _comingSoon = MutableLiveData<Flow<List<MovieShow>>>()
     val comingSoon get() = _comingSoon
 
-    private val _popularTvShows = MutableLiveData<List<MovieShow>>()
+    private val _popularTvShows = MutableLiveData<Flow<List<MovieShow>>>()
     val popularTvShows get() = _popularTvShows
 
-    private val _top250TvShows = MutableLiveData<List<MovieShow>>()
+    private val _top250TvShows = MutableLiveData<Flow<List<MovieShow>>>()
     val top250TvShows get() = _top250TvShows
 
     init {
