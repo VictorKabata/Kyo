@@ -13,8 +13,8 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentTvShowsBinding
-import com.vickikbt.kyoskinterview.ui.adapters.InTheatersMoviesAdapter
-import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsAdapter
+import com.vickikbt.kyoskinterview.ui.adapters.MovieShowViewPagerAdapter
+import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsRecyclerviewAdapter
 import com.vickikbt.kyoskinterview.utils.UiState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -106,7 +106,9 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
         }
 
         if (!comingSoon.isNullOrEmpty()) {
-            val viewPagerAdapter = InTheatersMoviesAdapter(comingSoon)
+            val viewPagerAdapter = MovieShowViewPagerAdapter(comingSoon){
+                navigateToDetails(it.id)
+            }
 
             binding.viewPagerComingSoon.apply {
                 offscreenPageLimit = 3
@@ -121,7 +123,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
 
     private fun initPopularTvShows(popularTvShows: List<MovieShow>) {
         if (!popularTvShows.isNullOrEmpty()) {
-            val adapter = MoviesShowsAdapter(popularTvShows) {
+            val adapter = MoviesShowsRecyclerviewAdapter(popularTvShows) {
                 navigateToDetails(it.id)
             }
 
@@ -131,7 +133,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
 
     private fun initTop250TvShows(tvShows: List<MovieShow>) {
         if (!tvShows.isNullOrEmpty()) {
-            val adapter = MoviesShowsAdapter(tvShows) {
+            val adapter = MoviesShowsRecyclerviewAdapter(tvShows) {
                 navigateToDetails(it.id)
             }
 

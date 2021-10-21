@@ -11,10 +11,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemRvMovieBinding
 
-class MoviesShowsAdapter constructor(
+class MoviesShowsRecyclerviewAdapter constructor(
     private val movies: List<MovieShow>,
     private val onClick: (MovieShow) -> Unit
-) : RecyclerView.Adapter<MoviesShowsAdapter.MoviesShowsViewHolder>() {
+) : RecyclerView.Adapter<MoviesShowsRecyclerviewAdapter.MoviesShowsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesShowsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

@@ -16,9 +16,10 @@ import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.databinding.ItemViewpagerMoviesBinding
 import timber.log.Timber
 
-class InTheatersMoviesAdapter constructor(
-    private val inTheaterMovies: List<MovieShow>
-) : RecyclerView.Adapter<InTheatersMoviesAdapter.ViewHolder>() {
+class MovieShowViewPagerAdapter constructor(
+    private val inTheaterMovies: List<MovieShow>,
+    private val onClick: (MovieShow) -> Unit
+) : RecyclerView.Adapter<MovieShowViewPagerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -32,6 +33,10 @@ class InTheatersMoviesAdapter constructor(
         val context = holder.itemView.context
 
         holder.bind(context, inTheatersMovie)
+
+        holder.itemView.setOnClickListener {
+            onClick(inTheatersMovie)
+        }
     }
 
     override fun getItemCount() = inTheaterMovies.size

@@ -13,8 +13,8 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentMoviesBinding
-import com.vickikbt.kyoskinterview.ui.adapters.InTheatersMoviesAdapter
-import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsAdapter
+import com.vickikbt.kyoskinterview.ui.adapters.MovieShowViewPagerAdapter
+import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsRecyclerviewAdapter
 import com.vickikbt.kyoskinterview.utils.UiState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -60,8 +60,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
                 launch {
                     viewModel.popularMovies.collect { uiState ->
-                        Timber.e(("UI State: $uiState"))
-
                         when (uiState) {
                             is UiState.Loading -> {
                                 //ToDo: Show loading state for popular movies
@@ -108,9 +106,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
 
         if (!inTheatersMovies.isNullOrEmpty()) {
-            val viewPagerAdapter = InTheatersMoviesAdapter(inTheatersMovies)
-
-
+            val viewPagerAdapter = MovieShowViewPagerAdapter(inTheatersMovies) {
+                navigateToDetails(it.id)
+            }
             binding.viewPagerInTheaters.apply {
                 offscreenPageLimit = 3
                 clipToPadding = false
@@ -124,7 +122,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initPopularMovies(popularMovies: List<MovieShow>) {
         if (!popularMovies.isNullOrEmpty()) {
-            val adapter = MoviesShowsAdapter(popularMovies) {
+            val adapter = MoviesShowsRecyclerviewAdapter(popularMovies) {
                 navigateToDetails(it.id)
             }
 
@@ -134,7 +132,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initTop250Movies(movies: List<MovieShow>) {
         if (!movies.isNullOrEmpty()) {
-            val adapter = MoviesShowsAdapter(movies) {
+            val adapter = MoviesShowsRecyclerviewAdapter(movies) {
                 navigateToDetails(it.id)
             }
             binding.recyclerviewTop250.adapter = adapter

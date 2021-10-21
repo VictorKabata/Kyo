@@ -3,6 +3,7 @@ package com.vickikbt.kyoskinterview.ui.fragments.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -13,8 +14,8 @@ import com.vickikbt.domain.models.TrailerResponse
 import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentDetailsBinding
 import com.vickikbt.kyoskinterview.ui.adapters.CastsAdapter
+import com.vickikbt.kyoskinterview.utils.getRating
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
@@ -32,6 +33,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun initUI() {
+        binding.textViewBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         viewModel.getMovieShowById(args.id).observe(viewLifecycleOwner) {
             initMovieDetail(it)
         }
@@ -67,17 +72,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         binding.textViewTitle.text = movieShow.title
 
-        val rating = Integer.parseInt(movieShow.imDbRating)
-
-        Timber.e("Rating: $rating")
+        val rating = movieShow.imDbRating?.getRating()
 
         if (rating != null && rating != 0) {
-            val newRating = (rating * 5) / 10
-
-            Timber.e("Calculated rating: $newRating")
-
-            binding.textViewRating.text = newRating.toString()
-            binding.ratingBarRating.rating = newRating.toFloat()
+            binding.textViewRating.text = rating.toString()
+            binding.ratingBarRating.rating = rating.toFloat()
         } else {
             binding.textViewRating.visibility = View.GONE
             binding.ratingBarRating.visibility = View.GONE

@@ -65,5 +65,5 @@ class DtoToDomainTest {
 
         assertThat(trailerResponseDto.toDomain()).isEqualTo(trailerResponse)
     }
-    
+
 }
