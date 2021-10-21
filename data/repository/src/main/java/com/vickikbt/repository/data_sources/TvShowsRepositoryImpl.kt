@@ -11,6 +11,8 @@ import com.vickikbt.network.utils.SafeApiRequest
 import com.vickikbt.repository.mappers.toDomain
 import com.vickikbt.repository.mappers.toEntity
 import com.vickikbt.repository.utils.Coroutines
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class TvShowsRepositoryImpl constructor(
     private val apiService: ApiService,
@@ -35,57 +37,60 @@ class TvShowsRepositoryImpl constructor(
         }
     }
 
-    override suspend fun fetchComingSoon(): List<MovieShow> {
+    override suspend fun fetchComingSoon(): Flow<List<MovieShow>> {
         val isCacheResponseAvailable =
             appDatabase.moviesDao().isMovieShowCacheAvailable(category = Constants.COMING_SOON) > 0
 
         return if (isCacheResponseAvailable) {
             val cacheResponse =
                 appDatabase.moviesDao().getMoviesShows(category = Constants.COMING_SOON)
-            cacheResponse.map { it.toDomain() }
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchComingSoon() }
             _comingSoon.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.COMING_SOON) }
 
-            appDatabase.moviesDao().getMoviesShows(category = Constants.COMING_SOON)
-                .map { it.toDomain() }
+            val cacheResponse =
+                appDatabase.moviesDao().getMoviesShows(category = Constants.COMING_SOON)
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         }
     }
 
-    override suspend fun fetchPopularTvShows(): List<MovieShow> {
+    override suspend fun fetchPopularTvShows(): Flow<List<MovieShow>> {
         val isCacheResponseAvailable = appDatabase.moviesDao()
             .isMovieShowCacheAvailable(category = Constants.POPULAR_TV_SHOW) > 0
 
         return if (isCacheResponseAvailable) {
             val cacheResponse =
                 appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_TV_SHOW)
-            cacheResponse.map { it.toDomain() }
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchPopularTvShows() }
             _popularTvShowsEntity.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.POPULAR_TV_SHOW) }
 
-            appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_TV_SHOW)
-                .map { it.toDomain() }
+            val cacheResponse =
+                appDatabase.moviesDao().getMoviesShows(category = Constants.POPULAR_TV_SHOW)
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         }
     }
 
-    override suspend fun fetchTop250TvShows(): List<MovieShow> {
+    override suspend fun fetchTop250TvShows(): Flow<List<MovieShow>> {
         val isCacheResponseAvailable = appDatabase.moviesDao()
             .isMovieShowCacheAvailable(category = Constants.TOP_250_TV_SHOW) > 0
 
         return if (isCacheResponseAvailable) {
             val cacheResponse =
                 appDatabase.moviesDao().getMoviesShows(category = Constants.TOP_250_TV_SHOW)
-            cacheResponse.map { it.toDomain() }
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         } else {
             val networkResponse = safeApiRequest { apiService.fetchTop250TvShows() }
             _top250TvShowsEntity.value =
                 networkResponse.movieShows?.map { it.toEntity(category = Constants.TOP_250_TV_SHOW) }
 
-            appDatabase.moviesDao().getMoviesShows(category = Constants.TOP_250_TV_SHOW)
-                .map { it.toDomain() }
+            val cacheResponse =
+                appDatabase.moviesDao().getMoviesShows(category = Constants.TOP_250_TV_SHOW)
+            cacheResponse.map { it.map { moviesShowList -> moviesShowList.toDomain() } }
         }
     }
 

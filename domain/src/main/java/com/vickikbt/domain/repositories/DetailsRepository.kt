@@ -4,6 +4,7 @@ import com.vickikbt.domain.models.Actor
 import com.vickikbt.domain.models.MovieShow
 import com.vickikbt.domain.models.PlotShort
 import com.vickikbt.domain.models.TrailerResponse
+import kotlinx.coroutines.flow.Flow
 
 interface DetailsRepository {
 
@@ -13,6 +14,6 @@ interface DetailsRepository {
 
     suspend fun getCast(id: String): List<Actor>
 
-    suspend fun getMovieShowById(id:String):MovieShow
+    suspend fun getMovieShowById(id:String): Flow<MovieShow>
 
 }
