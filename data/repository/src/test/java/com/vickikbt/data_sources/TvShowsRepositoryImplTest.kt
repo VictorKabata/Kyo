@@ -10,12 +10,10 @@ import com.vickikbt.cache.AppDatabase
 import com.vickikbt.cache.daos.MoviesShowsDao
 import com.vickikbt.cache.models.MovieShowEntity
 import com.vickikbt.commons.Constants
-import com.vickikbt.domain.repositories.MoviesRepository
 import com.vickikbt.domain.repositories.TvShowsRepository
 import com.vickikbt.network.ApiService
 import com.vickikbt.network.models.MovieShowDto
 import com.vickikbt.network.models.MoviesShowsResponseDto
-import com.vickikbt.repository.data_sources.MoviesRepositoryImpl
 import com.vickikbt.repository.data_sources.TvShowsRepositoryImpl
 import com.vickikbt.repository.mappers.toEntity
 import kotlinx.coroutines.flow.first
@@ -25,7 +23,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import retrofit2.Response
 
 @RunWith(RobolectricTestRunner::class)
 class TvShowsRepositoryImplTest {
@@ -51,27 +48,15 @@ class TvShowsRepositoryImplTest {
         apiService = mock()
 
         apiService.stub {
-            onBlocking { apiService.fetchComingSoon() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchComingSoon() }.doReturn(moviesShowApiResponse)
         }
 
         apiService.stub {
-            onBlocking { apiService.fetchPopularTvShows() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchPopularTvShows() }.doReturn(moviesShowApiResponse)
         }
 
         apiService.stub {
-            onBlocking { apiService.fetchTop250TvShows() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchTop250TvShows() }.doReturn(moviesShowApiResponse)
         }
 
         appDatabase = Room.inMemoryDatabaseBuilder(
@@ -98,7 +83,7 @@ class TvShowsRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.COMING_SOON).first()
         } else {
-            networkResult = apiService.fetchComingSoon().body()!!.movieShows!!
+            networkResult = apiService.fetchComingSoon().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.COMING_SOON) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.COMING_SOON).first()
@@ -118,7 +103,7 @@ class TvShowsRepositoryImplTest {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.COMING_SOON).first()
             assertThat(cacheResult).isNotEmpty()
         } else {
-            networkResult = apiService.fetchComingSoon().body()!!.movieShows!!
+            networkResult = apiService.fetchComingSoon().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.COMING_SOON) })
             cacheResult = moviesShowsDao.getMoviesShows(Constants.COMING_SOON).first()
         }
@@ -127,14 +112,15 @@ class TvShowsRepositoryImplTest {
 
     @Test
     fun fetchPopularTvShows_returnsPopularTvShows_InApi() = runBlocking {
-        val isCacheAvailable = moviesShowsDao.isMovieShowCacheAvailable(Constants.POPULAR_TV_SHOW) > 0
+        val isCacheAvailable =
+            moviesShowsDao.isMovieShowCacheAvailable(Constants.POPULAR_TV_SHOW) > 0
 
         assertThat(isCacheAvailable).isFalse()
 
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_TV_SHOW).first()
         } else {
-            networkResult = apiService.fetchPopularTvShows().body()!!.movieShows!!
+            networkResult = apiService.fetchPopularTvShows().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.POPULAR_TV_SHOW) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_TV_SHOW).first()
@@ -147,14 +133,15 @@ class TvShowsRepositoryImplTest {
     @Test
     fun fetchPopularTvShows_returnsPopularTvShows_InCache() = runBlocking {
         moviesShowsDao.saveMoviesShows(moviesShowsDtos.map { it.toEntity(Constants.POPULAR_TV_SHOW) })
-        val isCacheAvailable = moviesShowsDao.isMovieShowCacheAvailable(Constants.POPULAR_TV_SHOW) > 0
+        val isCacheAvailable =
+            moviesShowsDao.isMovieShowCacheAvailable(Constants.POPULAR_TV_SHOW) > 0
 
         assertThat(isCacheAvailable).isTrue()
 
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_TV_SHOW).first()
         } else {
-            networkResult = apiService.fetchPopularTvShows().body()!!.movieShows!!
+            networkResult = apiService.fetchPopularTvShows().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.POPULAR_TV_SHOW) })
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_TV_SHOW).first()
         }
@@ -164,14 +151,15 @@ class TvShowsRepositoryImplTest {
 
     @Test
     fun fetchTop250TvShows_returnsTop250TvShows_InApi() = runBlocking {
-        val isCacheAvailable = moviesShowsDao.isMovieShowCacheAvailable(Constants.TOP_250_TV_SHOW) > 0
+        val isCacheAvailable =
+            moviesShowsDao.isMovieShowCacheAvailable(Constants.TOP_250_TV_SHOW) > 0
 
         assertThat(isCacheAvailable).isFalse()
 
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_TV_SHOW).first()
         } else {
-            networkResult = apiService.fetchTop250TvShows().body()!!.movieShows!!
+            networkResult = apiService.fetchTop250TvShows().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.TOP_250_TV_SHOW) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_TV_SHOW).first()
@@ -184,14 +172,15 @@ class TvShowsRepositoryImplTest {
     @Test
     fun fetchTop250TvShows_returnsTop250TvShows_InCache() = runBlocking {
         moviesShowsDao.saveMoviesShows(moviesShowsDtos.map { it.toEntity(Constants.TOP_250_TV_SHOW) })
-        val isCacheAvailable = moviesShowsDao.isMovieShowCacheAvailable(Constants.TOP_250_TV_SHOW) > 0
+        val isCacheAvailable =
+            moviesShowsDao.isMovieShowCacheAvailable(Constants.TOP_250_TV_SHOW) > 0
 
         assertThat(isCacheAvailable).isTrue()
 
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_TV_SHOW).first()
         } else {
-            networkResult = apiService.fetchTop250TvShows().body()!!.movieShows!!
+            networkResult = apiService.fetchTop250TvShows().movieShows!!
             assertThat(networkResult).isEmpty()
 
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.TOP_250_TV_SHOW) })

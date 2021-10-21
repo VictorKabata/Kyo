@@ -9,6 +9,7 @@ import com.vickikbt.network.models.PlotShortDto
 import com.vickikbt.network.models.TrailerResponseDto
 import com.vickikbt.repository.mappers.toDomain
 import org.junit.Test
+import kotlin.math.roundToInt
 
 class DtoToDomainTest {
 
@@ -64,5 +65,5 @@ class DtoToDomainTest {
 
         assertThat(trailerResponseDto.toDomain()).isEqualTo(trailerResponse)
     }
-
+    
 }

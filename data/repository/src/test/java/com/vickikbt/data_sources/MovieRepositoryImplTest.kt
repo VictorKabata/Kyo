@@ -23,7 +23,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import retrofit2.Response
 
 @RunWith(RobolectricTestRunner::class)
 class MovieRepositoryImplTest {
@@ -49,27 +48,15 @@ class MovieRepositoryImplTest {
         apiService = mock()
 
         apiService.stub {
-            onBlocking { apiService.fetchInTheaterMovies() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchInTheaterMovies() }.doReturn(moviesShowApiResponse)
         }
 
         apiService.stub {
-            onBlocking { apiService.fetchPopularMovies() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchPopularMovies() }.doReturn(moviesShowApiResponse)
         }
 
         apiService.stub {
-            onBlocking { apiService.fetchTop250Movies() }.doReturn(
-                Response.success(
-                    moviesShowApiResponse
-                )
-            )
+            onBlocking { apiService.fetchTop250Movies() }.doReturn(moviesShowApiResponse)
         }
 
         appDatabase = Room.inMemoryDatabaseBuilder(
@@ -96,7 +83,7 @@ class MovieRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.IN_THEATERS).first()
         } else {
-            networkResult = apiService.fetchInTheaterMovies().body()!!.movieShows!!
+            networkResult = apiService.fetchInTheaterMovies().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.IN_THEATERS) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.IN_THEATERS).first()
@@ -116,7 +103,7 @@ class MovieRepositoryImplTest {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.IN_THEATERS).first()
             assertThat(cacheResult).isNotEmpty()
         } else {
-            networkResult = apiService.fetchInTheaterMovies().body()!!.movieShows!!
+            networkResult = apiService.fetchInTheaterMovies().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.IN_THEATERS) })
             cacheResult = moviesShowsDao.getMoviesShows(Constants.IN_THEATERS).first()
         }
@@ -132,7 +119,7 @@ class MovieRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_MOVIE).first()
         } else {
-            networkResult = apiService.fetchPopularMovies().body()!!.movieShows!!
+            networkResult = apiService.fetchPopularMovies().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.POPULAR_MOVIE) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_MOVIE).first()
@@ -152,7 +139,7 @@ class MovieRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_MOVIE).first()
         } else {
-            networkResult = apiService.fetchPopularMovies().body()!!.movieShows!!
+            networkResult = apiService.fetchPopularMovies().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.POPULAR_MOVIE) })
             cacheResult = moviesShowsDao.getMoviesShows(Constants.POPULAR_MOVIE).first()
         }
@@ -169,7 +156,7 @@ class MovieRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_MOVIE).first()
         } else {
-            networkResult = apiService.fetchTop250Movies().body()!!.movieShows!!
+            networkResult = apiService.fetchTop250Movies().movieShows!!
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.TOP_250_MOVIE) })
 
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_MOVIE).first()
@@ -189,7 +176,7 @@ class MovieRepositoryImplTest {
         if (isCacheAvailable) {
             cacheResult = moviesShowsDao.getMoviesShows(Constants.TOP_250_MOVIE).first()
         } else {
-            networkResult = apiService.fetchInTheaterMovies().body()!!.movieShows!!
+            networkResult = apiService.fetchInTheaterMovies().movieShows!!
             assertThat(networkResult).isEmpty()
 
             moviesShowsDao.saveMoviesShows(networkResult.map { it.toEntity(Constants.TOP_250_MOVIE) })
