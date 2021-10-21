@@ -98,8 +98,6 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
     }
 
     private fun initComingSoon(comingSoon: List<MovieShow>) {
-        val viewPagerAdapter = InTheatersMoviesAdapter(comingSoon)
-
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer(24))
         compositePageTransformer.addTransformer { page, position ->
@@ -107,30 +105,38 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
             page.scaleY = (0.85f + transform * 0.15f)
         }
 
-        binding.viewPagerComingSoon.apply {
-            offscreenPageLimit = 3
-            clipToPadding = false
-            clipChildren = false
-            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-            setPageTransformer(compositePageTransformer)
-            adapter = viewPagerAdapter
+        if (!comingSoon.isNullOrEmpty()) {
+            val viewPagerAdapter = InTheatersMoviesAdapter(comingSoon)
+
+            binding.viewPagerComingSoon.apply {
+                offscreenPageLimit = 3
+                clipToPadding = false
+                clipChildren = false
+                getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+                setPageTransformer(compositePageTransformer)
+                adapter = viewPagerAdapter
+            }
         }
     }
 
     private fun initPopularTvShows(popularTvShows: List<MovieShow>) {
-        val adapter = MoviesShowsAdapter(popularTvShows) {
-            navigateToDetails(it.id)
-        }
+        if (!popularTvShows.isNullOrEmpty()) {
+            val adapter = MoviesShowsAdapter(popularTvShows) {
+                navigateToDetails(it.id)
+            }
 
-        binding.recyclerviewPopular.adapter = adapter
+            binding.recyclerviewPopular.adapter = adapter
+        }
     }
 
     private fun initTop250TvShows(tvShows: List<MovieShow>) {
-        val adapter = MoviesShowsAdapter(tvShows) {
-            navigateToDetails(it.id)
-        }
+        if (!tvShows.isNullOrEmpty()) {
+            val adapter = MoviesShowsAdapter(tvShows) {
+                navigateToDetails(it.id)
+            }
 
-        binding.recyclerviewTop250.adapter = adapter
+            binding.recyclerviewTop250.adapter = adapter
+        }
     }
 
     private fun navigateToDetails(id: String) {
