@@ -72,7 +72,7 @@ jobs:
           java-version: 1.8
 
       - name: Build debug
-        run: ./gradlew assembleDebug
+        run: bash ./gradlew assembleDebug
 
   deploy:
     name: 🚀 Deploy to Firebase App Distribution
