@@ -21,11 +21,12 @@ jobs:
 
     steps:
       - name: Unit tests
-        run: ./gradlew testDebugUnitTest
+        run: bash ./gradlew test --stacktrace
 
   test-report:
     name: 📄 Generate Tests Report
     runs-on: ubuntu-latest
+    needs: [ tests ]
 
     steps:
       - name: Generate test report
