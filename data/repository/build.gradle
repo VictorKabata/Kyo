@@ -50,7 +50,7 @@ dependencies {
     testImplementation "io.mockk:mockk:1.10.0"
 
     //Robolectric
-    testImplementation "org.robolectric:robolectric:4.0.2"
+    testImplementation "org.robolectric:robolectric:4.5.1"
 
     // Core library
     testImplementation "androidx.test:core:$test_core_version"
