@@ -1,7 +1,7 @@
 name: Android CI
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   test:
@@ -20,4 +20,4 @@ jobs:
 
       - name: Android Test Report
         uses: asadmansr/android-test-report-action@v1.2.0
-        if: ${{ always() }} # IMPORTANT: run Android Test 
+        if: ${{ always() }} # IMPORTANT: run Android Test
