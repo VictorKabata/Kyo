@@ -1,8 +1,8 @@
 name: Dev CI
 
 on:
- push:
-   branches: [ dev ]
+  push:
+    branches: [ dev ]
 
 jobs:
   build:
@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: 🏗 Make Gradlew Executable
+        run: chmod +x ./gradlew
 
       - name: 🧪 Run Tests
         run: ./gradlew test
