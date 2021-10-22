@@ -76,7 +76,6 @@ jobs:
 
   deploy:
     name: 🚀 Deploy to Firebase App Distribution
-    needs: [build]
     runs-on: ubuntu-latest
     steps:
 
@@ -88,7 +87,7 @@ jobs:
         with:
           java-version: 1.8
 
-      -name: Upload artifcat to Firebase App Distribution
+      - name: Upload artifcat to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
