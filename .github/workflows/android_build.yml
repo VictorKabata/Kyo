@@ -5,8 +5,8 @@ on:
     branches: [ dev ]
 
 jobs:
-  seup:
-    name: 🏗Setup JDK
+  setup:
+    name: 🏗 Set up JDK
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,14 +16,17 @@ jobs:
           java-version: 1.8
 
   tests:
-    name: 🧪Run Unit Tests
+    name: 🧪 Run Unit Tests
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
       - name: Unit tests
-        run: bash ./gradlew test --stacktrace
+        run: bash ./gradlew testDebugUnitTest
+
+  test-report:
+    name: 📄 Generate Tests Report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate test report
+        uses: asadmansr/android-test-report-action@v1.2.0
