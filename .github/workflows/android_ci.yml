@@ -1,0 +1,21 @@
+name: Dev Branch CI
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Lint
+        run: ./gradlew lintDebug
+
+      - name: Generate test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: index.html
+          path: app/build/reports/lint-results-debug.htmlc
