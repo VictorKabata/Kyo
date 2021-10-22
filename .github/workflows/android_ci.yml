@@ -19,4 +19,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: index.html
-          path: app/build/reports/lint-results-debug.htmlc
+          path: app/build/reports/lint-results-debug.html
