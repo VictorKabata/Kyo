@@ -71,7 +71,7 @@ jobs:
           java-version: 1.8
 
       - name: Build debug apk
-        run: ./gradlew assembleDebug
+        run: bash ./gradlew assembleDebug
 
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
