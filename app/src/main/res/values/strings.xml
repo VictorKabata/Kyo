@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Kyosk Interview</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title_movies">Movies</string>
     <string name="title_tv_shows">TV Shows</string>
     <string name="title_profile">Profile</string>
@@ -21,4 +20,15 @@
     <string name="trailer">Trailer</string>
     <string name="cd_cast_image">Cast Image</string>
     <string name="all_content">All Content</string>
+
+    <string name="title_personalisation">Personalisation</string>
+    <string name="change_theme">Change Theme</string>
+
+    <string name="title_extras">Extras</string>
+
+    <string name="source_code">Source Code</string>
+    <string name="view_app_source_code">View app source code</string>
+
+    <string name="suggest_feature_or_report_bug">Suggest a feature or report a bug</string>
+    <string name="contact_developer">Contact Developer</string>
 </resources>

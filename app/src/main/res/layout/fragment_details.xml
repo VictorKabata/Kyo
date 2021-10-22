@@ -158,6 +158,8 @@
                 android:id="@+id/imageButton_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="10dp"
                 android:src="@drawable/ic_play"
                 app:layout_constraintBottom_toBottomOf="@id/cardView_trailer"
                 app:layout_constraintEnd_toEndOf="@id/cardView_trailer"

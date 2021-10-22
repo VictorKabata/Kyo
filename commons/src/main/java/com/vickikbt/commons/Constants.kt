@@ -16,4 +16,8 @@ object Constants {
     const val TOP_250_MOVIE = "top_250_movies"
     const val TOP_250_TV_SHOW = "top_250_tv_shows"
 
+    const val BUG_REPORT_EMAIL = "victorbro14@gmail.com"
+    const val BUG_REPORT_SUBJECT = "Bug Report"
+    const val SOURCE_CODE_URL = "https://github.com/VictorKabata"
+
 }

@@ -17,6 +17,7 @@ import com.vickikbt.kyoskinterview.databinding.FragmentMoviesBinding
 import com.vickikbt.kyoskinterview.ui.adapters.MovieShowViewPagerAdapter
 import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsRecyclerviewAdapter
 import com.vickikbt.kyoskinterview.utils.UiState
+import com.vickikbt.kyoskinterview.utils.toast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,6 +42,14 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun initUI() {
         binding.linearLayoutPopular.setOnClickListener { navigateToAllContent(Constants.POPULAR_MOVIE) }
         binding.linearLayoutTop250.setOnClickListener { navigateToAllContent(Constants.TOP_250_MOVIE) }
+
+        binding.toolbarMovies.setOnMenuItemClickListener {
+            if (it.itemId == R.id.action_search) {
+                requireContext().toast("Under development")
+                true
+            }
+            false
+        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -148,7 +157,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         findNavController().navigate(action)
     }
 
-    private fun navigateToAllContent(category:String) {
+    private fun navigateToAllContent(category: String) {
         val action = MoviesFragmentDirections.moviesToAllContent(category)
         findNavController().navigate(action)
     }

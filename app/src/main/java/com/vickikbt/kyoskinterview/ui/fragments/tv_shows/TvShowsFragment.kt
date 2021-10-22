@@ -16,8 +16,8 @@ import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentTvShowsBinding
 import com.vickikbt.kyoskinterview.ui.adapters.MovieShowViewPagerAdapter
 import com.vickikbt.kyoskinterview.ui.adapters.MoviesShowsRecyclerviewAdapter
-import com.vickikbt.kyoskinterview.ui.fragments.movies.MoviesFragmentDirections
 import com.vickikbt.kyoskinterview.utils.UiState
+import com.vickikbt.kyoskinterview.utils.toast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +42,14 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
     private fun initUI() {
         binding.linearLayoutPopular.setOnClickListener { navigateToAllContent(Constants.POPULAR_TV_SHOW) }
         binding.linearLayoutTop250.setOnClickListener { navigateToAllContent(Constants.TOP_250_TV_SHOW) }
+
+        binding.toolbarMovies.setOnMenuItemClickListener {
+            if (it.itemId == R.id.action_search) {
+                requireContext().toast("Under development")
+                true
+            }
+            false
+        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -111,7 +119,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
         }
 
         if (!comingSoon.isNullOrEmpty()) {
-            val viewPagerAdapter = MovieShowViewPagerAdapter(comingSoon){
+            val viewPagerAdapter = MovieShowViewPagerAdapter(comingSoon) {
                 navigateToDetails(it.id)
             }
 
@@ -151,7 +159,7 @@ class TvShowsFragment : Fragment(R.layout.fragment_tv_shows) {
         findNavController().navigate(action)
     }
 
-    private fun navigateToAllContent(category:String) {
+    private fun navigateToAllContent(category: String) {
         val action = TvShowsFragmentDirections.tvShowsToAllContent(category)
         findNavController().navigate(action)
     }

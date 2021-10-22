@@ -33,7 +33,7 @@ class MoviesShowsRecyclerviewAdapter constructor(
         }
     }
 
-    override fun getItemCount() = 12 //movies.size
+    override fun getItemCount() = movies.size
 
     inner class MoviesShowsViewHolder(private val binding: ItemRvMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {

@@ -15,6 +15,7 @@ import com.vickikbt.kyoskinterview.R
 import com.vickikbt.kyoskinterview.databinding.FragmentDetailsBinding
 import com.vickikbt.kyoskinterview.ui.adapters.CastsAdapter
 import com.vickikbt.kyoskinterview.utils.getRating
+import com.vickikbt.kyoskinterview.utils.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
@@ -33,6 +34,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     }
 
     private fun initUI() {
+        binding.imageButtonPlay.setOnClickListener { requireContext().toast("Under development") }
+
         binding.textViewBack.setOnClickListener {
             findNavController().navigateUp()
         }

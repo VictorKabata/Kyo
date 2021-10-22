@@ -1,32 +1,55 @@
 package com.vickikbt.kyoskinterview.ui.fragments.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
+import com.vickikbt.commons.Constants.BUG_REPORT_EMAIL
+import com.vickikbt.commons.Constants.BUG_REPORT_SUBJECT
+import com.vickikbt.commons.Constants.SOURCE_CODE_URL
 import com.vickikbt.kyoskinterview.R
-import com.vickikbt.kyoskinterview.databinding.FragmentProfileBinding
 
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : PreferenceFragmentCompat(),
+    PreferenceManager.OnPreferenceTreeClickListener {
 
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentProfileBinding.bind(view)
-
-        initUI()
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.profile_fragment, rootKey)
 
     }
 
-    private fun initUI() {
+    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+        when (preference?.key) {
+            "report bug" -> {
+                reportBug()
+            }
 
+            "source code" -> {
+                openSourceCode()
+            }
+        }
+
+        return super.onPreferenceTreeClick(preference)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun reportBug() {
+        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+            type = "text/plain"
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(BUG_REPORT_EMAIL))
+            putExtra(Intent.EXTRA_SUBJECT, BUG_REPORT_SUBJECT)
+        }
+
+        startActivity(emailIntent)
+    }
+
+    private fun openSourceCode() {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(SOURCE_CODE_URL)
+        startActivity(intent)
     }
 
 }
