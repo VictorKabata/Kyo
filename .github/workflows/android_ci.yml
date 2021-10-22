@@ -6,13 +6,14 @@ on:
 
 jobs:
   lint:
+    name: 🔍 Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Lint
-        run: ./gradlew lintDebug
+        run: bash ./gradlew lintDebug
 
       - name: Generate test report
         uses: actions/upload-artifact@v2
