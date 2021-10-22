@@ -2,7 +2,7 @@ name: Dev Branch CI
 
 on:
   push:
-    branches: [dev]
+    branches: [ dev ]
 
 jobs:
   lint:
@@ -15,8 +15,25 @@ jobs:
       - name: Lint
         run: bash ./gradlew lintDebug
 
+      - name: Generate lint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint_report.html
+          path: app/build/reports/lint-results-debug.html
+
+  unit-test:
+    name: 🧪 Unit Test
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Execute unit tests
+        run: bash ./gradlew test
+
       - name: Generate test report
         uses: actions/upload-artifact@v2
         with:
-          name: index.html
-          path: app/build/reports/lint-results-debug.html
+          name: unit_test_report.html
+          path: app/build/reports/tests/testDebugUnitTest/
