@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Unit tests
-        run: bash ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest
 
   test-report:
     name: 📄 Generate Tests Report
