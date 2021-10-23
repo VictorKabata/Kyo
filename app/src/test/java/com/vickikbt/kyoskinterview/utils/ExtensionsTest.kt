@@ -10,7 +10,7 @@ class ExtensionsTest {
         val ratingString = "6.6"
         val rating = ratingString.getRating()
 
-        assertThat(rating).isEqualTo(3)
+        assertThat(rating).isEqualTo(3.3)
         assertThat(rating).isNotEqualTo(ratingString)
     }
 
