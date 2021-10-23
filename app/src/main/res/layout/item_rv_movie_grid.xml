@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView_image"
+        android:layout_width="140dp"
+        android:layout_height="210dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/cd_movie_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_launcher_background" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--region Rating Fab-->
+    <FrameLayout
+        android:id="@+id/frameLayout_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@id/cardView_image"
+        app:layout_constraintTop_toTopOf="@id/cardView_image">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:alpha="0.6"
+            android:backgroundTint="#F99F00"
+            android:contentDescription="@string/cd_rating" />
+
+        <TextView
+            android:id="@+id/textView_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:elevation="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            tools:text="6.9" />
+    </FrameLayout>
+    <!--endregion-->
+
+    <TextView
+        android:id="@+id/textView_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColor="@color/textPrimary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView_image"
+        tools:text="Star Wars: Empire Strike Back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

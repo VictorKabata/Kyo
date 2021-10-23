@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable-v24/ic_empty.xml" value="0.3411458333333333" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable-v24/ic_github.xml" value="0.26944444444444443" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable-v24/ic_theme.xml" value="0.26944444444444443" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable/gradient_fab.xml" value="0.3411458333333333" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable/ic_arrow_back.xml" value="0.3411458333333333" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable/ic_play.xml" value="0.26944444444444443" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/drawable/ic_search.xml" value="0.33589743589743587" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_all_content.xml" value="0.325" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_details.xml" value="0.22" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_movies.xml" value="0.22" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_profile.xml" value="0.3109375" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/fragment_tv_shows.xml" value="0.1" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_header_viewpager.xml" value="0.30925925925925923" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_rv_cast.xml" value="0.325" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_rv_movie.xml" value="0.30925925925925923" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/layout/item_rv_movie_grid.xml" value="0.325" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13703703703703704" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/menu/search_menu.xml" value="0.30925925925925923" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/xml/movies_fragment_scene.xml" value="0.30925925925925923" />
+        <entry key="..\:/Projects/Kotlin/KyoskInterview/app/src/main/res/xml/profile_fragment.xml" value="0.22685185185185186" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

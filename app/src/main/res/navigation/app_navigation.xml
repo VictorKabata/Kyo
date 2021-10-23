@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/movies_fragment">
+
+    <fragment
+        android:id="@+id/movies_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.movies.MoviesFragment"
+        android:label="@string/title_movies"
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/movies_to_details"
+            app:destination="@id/detail_fragment" />
+        <action
+            android:id="@+id/movies_to_all_content"
+            app:destination="@id/all_content_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tv_shows_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.tv_shows.TvShowsFragment"
+        android:label="@string/title_tv_shows"
+        tools:layout="@layout/fragment_tv_shows" >
+        <action
+            android:id="@+id/tv_shows_to_details"
+            app:destination="@id/detail_fragment" />
+        <action
+            android:id="@+id/tv_shows_to_all_content"
+            app:destination="@id/all_content_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.details.DetailsFragment"
+        android:label="@string/title_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/all_content_fragment"
+        android:name="com.vickikbt.kyoskinterview.ui.fragments.all_content.AllContentFragment"
+        android:label="@string/all_content"
+        tools:layout="@layout/fragment_all_content">
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/all_content_to_details"
+            app:destination="@id/detail_fragment" />
+    </fragment>
+
+</navigation>

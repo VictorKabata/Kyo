@@ -33,6 +33,27 @@ android {
 }
 
 dependencies {
-    implementation "androidx.room:room-runtime:$room_version"
+    implementation project(":commons")
+
+    api "androidx.room:room-runtime:$room_version"
+    api "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    //Koin Android-Dependency injection in android module
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    //GSON
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // Core library
+    androidTestImplementation "androidx.test:core:$test_core_version"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+
+    androidTestImplementation "androidx.test:rules:$jUnit_version"
+    androidTestImplementation "androidx.test:runner:$jUnit_version"
+
+    //Truth
+    androidTestImplementation "com.google.truth:truth:$truth_version"
 }

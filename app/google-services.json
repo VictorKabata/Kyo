@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "224324008198",
+    "project_id": "kyosk-interview",
+    "storage_bucket": "kyosk-interview.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224324008198:android:b5e9543085a6c75851c687",
+        "android_client_info": {
+          "package_name": "com.vickikbt.kyoskinterview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224324008198-v55ekmdt13jh0nmadildl08d6v743jo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi-nOkTqV7n7p0fZWBJWg7COCkRkkfAzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224324008198-v55ekmdt13jh0nmadildl08d6v743jo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

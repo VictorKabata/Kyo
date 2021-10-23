@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'org.sonarqube'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -22,17 +25,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
-    implementation project(":domain")
+    implementation project(":commons")
     implementation project(":data:repository")
 
     implementation "androidx.core:core-ktx:$androidCore_version"
@@ -43,6 +52,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //Koin Android-Dependency injection in android module
     implementation "io.insert-koin:koin-android:$koin_version"
@@ -56,4 +68,29 @@ dependencies {
 
     //Timber-Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //Palette- Generates dominant colors from image
+    implementation "com.android.support:palette-v7:$palette_version"
+
+    //Fading Edge- Create a UI view with a smooth fading edge
+    implementation "com.github.bosphere.android-fadingedgelayout:fadingedgelayout:$fadingEdge_version"
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    //JUnit
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "androidx.test:rules:$jUnit_version"
+    testImplementation "androidx.test:runner:$jUnit_version"
+
+    //Truth
+    testImplementation "com.google.truth:truth:$truth_version"
+
+    // Core library
+    testImplementation "androidx.test:core:$test_core_version"
+
+    // AndroidJUnitRunner and JUnit Rules
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+
+    //Firebase BoM- Required for Firebase App Distribution
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
 }

@@ -1,0 +1,103 @@
+name: Main Branch CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: 🔍 Lint
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Lint
+        run: bash ./gradlew lintDebug
+
+      - name: Generate lint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint_report.html
+          path: app/build/reports/lint-results-debug.html
+
+  unit-test:
+    name: 🧪 Unit Test
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Execute unit tests
+        run: bash ./gradlew test --stacktrace
+
+      - name: Generate test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit_test_report.html
+          path: app/build/reports/tests/testDebugUnitTest/
+
+  #  static-code-analysis:
+  #    name: 🕶 Static Code Analysis
+  #    #    needs: [ unit-test, instrumentation-test ]
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: Checkout code
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Set up JDK 11
+  #        uses: actions/setup-java@v1
+  #        with:
+  #          java-version: 11
+  #
+  #      - name: SonarCloud scan
+  #        run: bash ./gradlew app:sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+  #        env:
+  #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: 🔨 Build 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Build debug apk
+        run: bash ./gradlew assembleDebug
+
+  package:
+    name: 📦 Create Package
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Notflix
+          path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+
+  deploy:
+    name: 🚀 Deploy to Firebase App Distribution
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: Beta Testers
+          file: app/build/outputs/apk/debug/app-debug.apk

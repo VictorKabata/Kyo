@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_details_scene"
+    tools:context=".ui.fragments.details.DetailsFragment">
+
+    <TextView
+        android:id="@+id/textView_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="11dp"
+        android:layout_marginVertical="16dp"
+        android:drawablePadding="8dp"
+        android:elevation="8dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/back"
+        android:textAllCaps="true"
+        android:textColor="@color/textPrimary"
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.bosphere.fadingedgelayout.FadingEdgeLayout
+        android:id="@+id/fel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:fel_edge="bottom"
+        app:fel_size_bottom="90dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_cover"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@string/cd_movie_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_launcher_background" />
+    </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/fel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/textPrimary"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Star Wars: Empire Strike Back" />
+
+            <!--<TextView
+                android:id="@+id/textView_genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/textSecondary"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_title"
+                tools:text="Action | Sci-Fi | Adventure" />-->
+
+            <TextView
+                android:id="@+id/textView_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/textSecondary"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_title"
+                tools:text="4.0" />
+
+            <RatingBar
+                android:id="@+id/ratingBar_rating"
+                style="?attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:theme="@style/RatingBarAppearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_rating"
+                tools:rating="4.0" />
+
+            <TextView
+                android:id="@+id/textView_plot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="9dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:lineHeight="24dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/textSecondary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar_rating"
+                tools:text="@string/placeholder_plot" />
+
+            <TextView
+                android:id="@+id/textView_trailer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/trailer"
+                android:textAlignment="textStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_plot" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView_trailer"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintTop_toBottomOf="@id/textView_trailer_title">
+
+                <ImageView
+                    android:id="@+id/imageView_trailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageButton
+                android:id="@+id/imageButton_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="10dp"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="@id/cardView_trailer"
+                app:layout_constraintEnd_toEndOf="@id/cardView_trailer"
+                app:layout_constraintStart_toStartOf="@id/cardView_trailer"
+                app:layout_constraintTop_toTopOf="@id/cardView_trailer" />
+
+            <TextView
+                android:id="@+id/textView_cast_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/cast"
+                android:textAlignment="textStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView_trailer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:alpha="1"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/textView_cast_title"
+                tools:listitem="@layout/item_rv_cast" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

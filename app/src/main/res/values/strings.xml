@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Kyosk Interview</string>
+
+    <string name="title_movies">Movies</string>
+    <string name="title_tv_shows">TV Shows</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_search">Search</string>
+    <string name="popular">Popular</string>
+    <string name="cd_movie_image">Movie image</string>
+    <string name="top_250_movies">Top 250 Movies</string>
+    <string name="see_all">See all</string>
+    <string name="in_theaters">In Theaters</string>
+    <string name="top_250_tv_shows">Top 250 TV Shows</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="cd_rating">Rating</string>
+    <string name="title_details">Details</string>
+    <string name="back">Back</string>
+    <string name="placeholder_plot">Having spent most of her life exploring the jungle, nothing could prepare Dora for her most dangerous adventure yet — high school.</string>
+    <string name="cast">Cast</string>
+    <string name="trailer">Trailer</string>
+    <string name="cd_cast_image">Cast Image</string>
+    <string name="all_content">All Content</string>
+
+    <string name="title_personalisation">Personalisation</string>
+    <string name="change_theme">Change Theme</string>
+
+    <string name="title_extras">Extras</string>
+
+    <string name="source_code">Source Code</string>
+    <string name="view_app_source_code">View app source code</string>
+
+    <string name="suggest_feature_or_report_bug">Suggest a feature or report a bug</string>
+    <string name="contact_developer">Contact Developer</string>
 </resources>
