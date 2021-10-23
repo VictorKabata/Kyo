@@ -1,4 +1,4 @@
-# Kyosk-Interview
+# kinv
 
 An android app built using Kotlin that consumes [IMDB API]("https://developer.imdb.com/") to display current trending, upcoming and popular movies🍿 and tvshows🎬. It has been built following Clean Architecture Principle, Repository Pattern, MVVM Architecture in the presentation layer as well as Jetpack components.
 
