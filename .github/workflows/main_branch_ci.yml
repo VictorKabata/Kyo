@@ -1,8 +1,8 @@
-name: Dev Branch CI
+name: Main Branch CI
 
 on:
-  push:
-    branches: [ dev ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   lint:
@@ -64,7 +64,7 @@ jobs:
   #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
-    name: 🏗 Build and Deploy to Firebase App Distribution
+    name: 🔨 Build 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -78,6 +78,22 @@ jobs:
       - name: Build debug apk
         run: bash ./gradlew assembleDebug
 
+  package:
+    name: 📦 Create Package
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Notflix
+          path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+
+  deploy:
+    name: 🚀 Deploy to Firebase App Distribution
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
